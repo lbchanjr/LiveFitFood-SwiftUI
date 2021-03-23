@@ -13,6 +13,13 @@
 		8770D7882602863900C60605 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8770D7872602863900C60605 /* Preview Assets.xcassets */; };
 		8770D78A2602863900C60605 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7892602863900C60605 /* Persistence.swift */; };
 		8770D78D2602863900C60605 /* LiveFitFood_SwiftUI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8770D78B2602863900C60605 /* LiveFitFood_SwiftUI.xcdatamodeld */; };
+		8770D7982603EF9800C60605 /* LoginScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7972603EF9700C60605 /* LoginScreenView.swift */; };
+		8770D7A226051A0300C60605 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7A126051A0300C60605 /* LoginViewModel.swift */; };
+		8770D7A6260598AB00C60605 /* CoreDataUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7A5260598AB00C60605 /* CoreDataUtilities.swift */; };
+		8770D7AB2605AEF900C60605 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7A92605AEF900C60605 /* User+CoreDataClass.swift */; };
+		8770D7AC2605AEF900C60605 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7AA2605AEF900C60605 /* User+CoreDataProperties.swift */; };
+		8770D7B02607940500C60605 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7AF2607940400C60605 /* HeaderView.swift */; };
+		8770D7B52607E20300C60605 /* RegistrationScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7B42607E20200C60605 /* RegistrationScreenView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +31,13 @@
 		8770D7892602863900C60605 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		8770D78C2602863900C60605 /* LiveFitFood_SwiftUI.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LiveFitFood_SwiftUI.xcdatamodel; sourceTree = "<group>"; };
 		8770D78E2602863900C60605 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8770D7972603EF9700C60605 /* LoginScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenView.swift; sourceTree = "<group>"; };
+		8770D7A126051A0300C60605 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		8770D7A5260598AB00C60605 /* CoreDataUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtilities.swift; sourceTree = "<group>"; };
+		8770D7A92605AEF900C60605 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8770D7AA2605AEF900C60605 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8770D7AF2607940400C60605 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		8770D7B42607E20200C60605 /* RegistrationScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationScreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +70,10 @@
 		8770D77F2602863500C60605 /* LiveFitFood-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				8770D7AF2607940400C60605 /* HeaderView.swift */,
+				8770D7A42605988700C60605 /* CoreData */,
+				8770D7B32607E1B200C60605 /* Registration */,
+				8770D7962603EF6200C60605 /* Login */,
 				8770D7802602863500C60605 /* LiveFitFood_SwiftUIApp.swift */,
 				8770D7822602863500C60605 /* ContentView.swift */,
 				8770D7842602863900C60605 /* Assets.xcassets */,
@@ -73,6 +91,33 @@
 				8770D7872602863900C60605 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8770D7962603EF6200C60605 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8770D7972603EF9700C60605 /* LoginScreenView.swift */,
+				8770D7A126051A0300C60605 /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		8770D7A42605988700C60605 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				8770D7A92605AEF900C60605 /* User+CoreDataClass.swift */,
+				8770D7AA2605AEF900C60605 /* User+CoreDataProperties.swift */,
+				8770D7A5260598AB00C60605 /* CoreDataUtilities.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		8770D7B32607E1B200C60605 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				8770D7B42607E20200C60605 /* RegistrationScreenView.swift */,
+			);
+			path = Registration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,10 +189,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8770D7982603EF9800C60605 /* LoginScreenView.swift in Sources */,
 				8770D78A2602863900C60605 /* Persistence.swift in Sources */,
+				8770D7B52607E20300C60605 /* RegistrationScreenView.swift in Sources */,
+				8770D7A6260598AB00C60605 /* CoreDataUtilities.swift in Sources */,
+				8770D7A226051A0300C60605 /* LoginViewModel.swift in Sources */,
 				8770D7832602863500C60605 /* ContentView.swift in Sources */,
+				8770D7B02607940500C60605 /* HeaderView.swift in Sources */,
 				8770D78D2602863900C60605 /* LiveFitFood_SwiftUI.xcdatamodeld in Sources */,
+				8770D7AB2605AEF900C60605 /* User+CoreDataClass.swift in Sources */,
 				8770D7812602863500C60605 /* LiveFitFood_SwiftUIApp.swift in Sources */,
+				8770D7AC2605AEF900C60605 /* User+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

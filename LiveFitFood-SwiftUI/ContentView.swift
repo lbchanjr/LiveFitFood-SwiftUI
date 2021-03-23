@@ -16,10 +16,16 @@ struct ContentView: View {
         animation: .default)
     private var items: FetchedResults<Item>
 
+//        @FetchRequest(
+//            sortDescriptors: [NSSortDescriptor(keyPath: \User.email, ascending: true)],
+//            animation: .default)
+//        private var items: FetchedResults<User>
+
     var body: some View {
         List {
             ForEach(items) { item in
                 Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                //Text("Item at \(item.email!)")
             }
             .onDelete(perform: deleteItems)
         }
