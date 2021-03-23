@@ -20,7 +20,7 @@ struct LoginScreenView: View {
             
             Text("Email")
                 .font(.headline)
-                .padding(.top, 20)
+                .padding(.top, registerUser ? 10 : 20)
                 
             TextField("Enter email address", text: $loginViewModel.email)
                 .textContentType(.emailAddress)
@@ -30,7 +30,7 @@ struct LoginScreenView: View {
             
             Text("Password")
                 .font(.headline)
-                .padding(.top, 10)
+                .padding(.top, registerUser ? 5 : 10)
             SecureField("Enter password", text: $loginViewModel.password)
                 .padding(.all, 10)
                 .background(Color(.secondarySystemBackground))
@@ -75,10 +75,12 @@ struct LoginScreenView: View {
                 Toggle("Save username and password?", isOn: $loginViewModel.saveLoginInfo)
                     .padding()
             } else {
-                Text("Registration view goes here")
+                RegistrationScreenView(/*loginViewModel: $loginViewModel*/registerUser: $registerUser)
             }
             
-            Spacer()
+            if !registerUser {
+                Spacer()
+            }
             
             HStack {
                 Spacer()
