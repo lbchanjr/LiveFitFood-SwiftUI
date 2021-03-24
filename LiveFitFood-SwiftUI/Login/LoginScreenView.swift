@@ -11,7 +11,7 @@ import CoreData
 struct LoginScreenView: View {
     @State var userLoggedIn = false
     @State var registerUser = false
-    @ObservedObject var loginViewModel = LoginViewModel()
+    @EnvironmentObject var loginViewModel: LoginViewModel
                 
     var body: some View {
         
@@ -34,15 +34,6 @@ struct LoginScreenView: View {
             SecureField("Enter password", text: $loginViewModel.password)
                 .padding(.all, 10)
                 .background(Color(.secondarySystemBackground))
-//                .sheet(isPresented: $registerUser/*, onDismiss: {print("registerUser = \(registerUser)")}*/) {
-//                    Button("Cancel") {
-//                        registerUser.toggle()
-//                    }
-//                    .padding(10)
-//                    .background(Color.blue)
-//                    .foregroundColor(.white)
-//                    .cornerRadius(10)
-//                }
             
             if !registerUser {
                 HStack {
@@ -75,7 +66,7 @@ struct LoginScreenView: View {
                 Toggle("Save username and password?", isOn: $loginViewModel.saveLoginInfo)
                     .padding()
             } else {
-                RegistrationScreenView(/*loginViewModel: $loginViewModel*/registerUser: $registerUser)
+                RegistrationScreenView(registerUser: $registerUser)
             }
             
             if !registerUser {
@@ -87,11 +78,13 @@ struct LoginScreenView: View {
                 Text(loginViewModel.message)
                     .foregroundColor(.red)
                     .padding(.bottom)
+                    .font(.headline)
                 Spacer()
             }
             
         }
         .padding(.horizontal)
+        
     }
     
     private func signInButtonPressed() {
@@ -112,7 +105,15 @@ struct LoginScreenView: View {
 
 struct LoginScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginScreenView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        LoginScreenView()
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environmentObject(LoginViewModel())
+        LoginScreenView()
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environmentObject(LoginViewModel())
+            //.colorScheme(.dark)
+            //.background(Color.black)
+            .previewDevice("iPhone SE (2nd generation)")
     }
 }
 

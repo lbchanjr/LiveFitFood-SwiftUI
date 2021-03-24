@@ -80,7 +80,7 @@ extension LoginViewModel: LoginViewModelDelegate {
             }
         } else {
             
-            message = ""
+            message = "New user registration"
             return .newUser
         }
         

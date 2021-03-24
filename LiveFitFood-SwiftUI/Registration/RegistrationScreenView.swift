@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RegistrationScreenView: View {
-    //var loginViewModel: Binding<LoginViewModel>
+    @EnvironmentObject var loginViewModel: LoginViewModel
     @State var phone: String = ""
     @State var confirmPassword: String = ""
     @Binding var registerUser: Bool
@@ -35,31 +35,38 @@ struct RegistrationScreenView: View {
                 .font(.headline)
                 .padding(.top, 10)
             HStack {
-                Image(systemName: "camera")
+                Spacer()
+                Image(systemName: "person")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: UIScreen.main.bounds.size.width * 0.35, height: UIScreen.main.bounds.size.width * 0.35)
-                    .padding(.leading, 15)
+                    .frame(width: UIScreen.main.bounds.size.width * 0.3, height: UIScreen.main.bounds.size.width * 0.3)
+                    .padding(.all, 5)
+                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(.label)))
+                    
+                    
+                    
                 Spacer()
                 VStack {
                     Button("Use Camera", action: {})
                         .padding(.all)
                         .frame(width: UIScreen.main.bounds.size.width * 0.4)
-                        .background(Color.blue)
+                        .background(Color.gray)
                         .foregroundColor(.white)
                         .cornerRadius(10)
                         
                     Button("Choose Photo", action: {})
                         .padding(.all)
                         .frame(width: UIScreen.main.bounds.size.width * 0.4)
-                        .background(Color.blue)
+                        .background(Color.gray)
                         .foregroundColor(.white)
                         .cornerRadius(10)
                     
                 }.padding(.trailing, 15)
+                Spacer()
             }
             
             HStack {
+                Spacer()
                 Button("Register", action: {})
                     .padding(.all)
                     .frame(width: UIScreen.main.bounds.size.width * 0.5)
@@ -69,12 +76,16 @@ struct RegistrationScreenView: View {
                     
                 Spacer()
                 
-                Button("Cancel", action: {registerUser.toggle()})
+                Button("Cancel", action: {
+                    registerUser.toggle()
+                    loginViewModel.message = ""
+                })
                     .padding(.all)
                     .frame(width: UIScreen.main.bounds.size.width * 0.3)
                     .background(Color.red)
                     .foregroundColor(.white)
                     .cornerRadius(10)
+                Spacer()
             }.padding(.horizontal)
         }
     }
@@ -82,6 +93,7 @@ struct RegistrationScreenView: View {
 
 struct RegistrationScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationScreenView(/*loginViewModel: .constant(LoginViewModel())*/registerUser: .constant(true))
+        RegistrationScreenView(registerUser: .constant(true))
+            .environmentObject(LoginViewModel())
     }
 }

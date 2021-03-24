@@ -15,8 +15,7 @@ struct HeaderView: View {
                 Image("livefitfood")
                     .resizable()
                     .scaledToFit()
-                    //.frame(width: metrics.size.width * 0.3, height: metrics.size.width * 0.3)
-                    .frame(height: UIScreen.main.bounds.height * 0.125)
+                        .frame(minHeight: UIScreen.main.bounds.height * 0.1, maxHeight: UIScreen.main.bounds.height * 0.125)
                     .padding(.vertical)
                 Spacer()
             }

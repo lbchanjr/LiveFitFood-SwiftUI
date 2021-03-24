@@ -17,6 +17,7 @@ struct LiveFitFood_SwiftUIApp: App {
             
             LoginScreenView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(LoginViewModel())
         }
     }
 }
