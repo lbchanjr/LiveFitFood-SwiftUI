@@ -19,20 +19,25 @@ struct LoginScreenView: View {
             HeaderView()
             
             Text("Email")
-                .font(.headline)
+                .font(.subheadline)
                 .padding(.top, registerUser ? 10 : 20)
                 
             TextField("Enter email address", text: $loginViewModel.email)
                 .textContentType(.emailAddress)
+                .minimumScaleFactor(0.8)
                 .autocapitalization(.none)
-                .padding(.all, 10)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 5)
+                .minimumScaleFactor(0.8)
                 .background(Color(.secondarySystemBackground))
             
             Text("Password")
-                .font(.headline)
+                .font(.subheadline)
                 .padding(.top, registerUser ? 5 : 10)
             SecureField("Enter password", text: $loginViewModel.password)
-                .padding(.all, 10)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 5)
+                .minimumScaleFactor(0.8)
                 .background(Color(.secondarySystemBackground))
             
             if !registerUser {
@@ -42,7 +47,7 @@ struct LoginScreenView: View {
                         signInButtonPressed()
                     }
                     .font(.title2)
-                    .padding(15)
+                    .padding(.all)
                     .background(Color.blue)
                     .foregroundColor(.white)
                     .cornerRadius(10)

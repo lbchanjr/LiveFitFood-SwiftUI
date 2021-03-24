@@ -15,47 +15,49 @@ struct RegistrationScreenView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("Confirm Password")
-                .font(.headline)
+                .font(.subheadline)
                 .padding(.top, 5)
             SecureField("Re-enter password", text: $confirmPassword)
-                .padding(.all, 10)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 5)
+                .minimumScaleFactor(0.8)
                 .background(Color(.secondarySystemBackground))
             
             Text("Phone number")
-                .font(.headline)
+                .font(.subheadline)
                 .padding(.top, 10)
                 
             TextField("e.g. +1-416-555-6789", text: $phone)
                 .textContentType(.emailAddress)
                 .autocapitalization(.none)
-                .padding(.all, 10)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 5)
+                .minimumScaleFactor(0.8)
                 .background(Color(.secondarySystemBackground))
 
             Text("Profile photo")
-                .font(.headline)
+                .font(.subheadline)
                 .padding(.top, 10)
             HStack {
                 Spacer()
                 Image(systemName: "person")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: UIScreen.main.bounds.size.width * 0.3, height: UIScreen.main.bounds.size.width * 0.3)
+                    .frame(minWidth: UIScreen.main.bounds.size.width * 0.25, maxWidth: UIScreen.main.bounds.size.width * 0.3, minHeight: UIScreen.main.bounds.size.width * 0.25, maxHeight: UIScreen.main.bounds.size.width * 0.3)
                     .padding(.all, 5)
                     .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(.label)))
-                    
-                    
                     
                 Spacer()
                 VStack {
                     Button("Use Camera", action: {})
-                        .padding(.all)
+                        .padding(.all, 10)
                         .frame(width: UIScreen.main.bounds.size.width * 0.4)
                         .background(Color.gray)
                         .foregroundColor(.white)
                         .cornerRadius(10)
                         
                     Button("Choose Photo", action: {})
-                        .padding(.all)
+                        .padding(.all, 10)
                         .frame(width: UIScreen.main.bounds.size.width * 0.4)
                         .background(Color.gray)
                         .foregroundColor(.white)
@@ -68,7 +70,7 @@ struct RegistrationScreenView: View {
             HStack {
                 Spacer()
                 Button("Register", action: {})
-                    .padding(.all)
+                    .padding(.all, 10)
                     .frame(width: UIScreen.main.bounds.size.width * 0.5)
                     .background(Color.blue)
                     .foregroundColor(.white)
@@ -80,7 +82,7 @@ struct RegistrationScreenView: View {
                     registerUser.toggle()
                     loginViewModel.message = ""
                 })
-                    .padding(.all)
+                    .padding(.all, 10)
                     .frame(width: UIScreen.main.bounds.size.width * 0.3)
                     .background(Color.red)
                     .foregroundColor(.white)
