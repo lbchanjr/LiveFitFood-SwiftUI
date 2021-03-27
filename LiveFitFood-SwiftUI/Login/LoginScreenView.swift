@@ -26,6 +26,7 @@ struct LoginScreenView: View {
                 .textContentType(.emailAddress)
                 .minimumScaleFactor(0.8)
                 .autocapitalization(.none)
+                .keyboardType(.emailAddress)
                 .padding(.horizontal, 10)
                 .padding(.vertical, 5)
                 .minimumScaleFactor(0.8)
@@ -66,17 +67,13 @@ struct LoginScreenView: View {
                     Spacer()
                 }
                 .padding(.top, 30)
-                
-                
                 Toggle("Save username and password?", isOn: $loginViewModel.saveLoginInfo)
                     .padding()
             } else {
-                RegistrationScreenView(registerUser: $registerUser)
+                RegistrationScreenView(image: $loginViewModel.image, registerUser: $registerUser)
             }
             
-            if !registerUser {
-                Spacer()
-            }
+            Spacer()
             
             HStack {
                 Spacer()
@@ -89,8 +86,12 @@ struct LoginScreenView: View {
             
         }
         .padding(.horizontal)
-        
+        .contentShape(Rectangle())
+        .onTapGesture {
+            self.hideKeyboard()
+        }
     }
+    
     
     private func signInButtonPressed() {
         switch(loginViewModel.processLogin()) {
@@ -121,5 +122,3 @@ struct LoginScreenView_Previews: PreviewProvider {
             .previewDevice("iPhone SE (2nd generation)")
     }
 }
-
-

@@ -26,6 +26,7 @@ struct HeaderView: View {
                     .font(.title3)
                 Spacer()
             }
+            .padding(.top, -15)
         }
     }
 }

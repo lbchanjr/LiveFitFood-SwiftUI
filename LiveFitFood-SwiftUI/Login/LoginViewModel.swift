@@ -24,7 +24,7 @@ class LoginViewModel: ObservableObject {
     @Published var password = ""
     @Published var saveLoginInfo: Bool = false
     @Published var message: String = ""
-    
+    @Published var image: UIImage = UIImage(named: "noimage")!
     @Published var validEmail = false
         
     private var disposables = Set<AnyCancellable>()
@@ -84,5 +84,18 @@ extension LoginViewModel: LoginViewModelDelegate {
             return .newUser
         }
         
+    }
+}
+
+extension LoginViewModel {
+    var photoFromCameraView: some View {
+        return ImagePickerView(sourceType: .camera) { image in
+            self.image = image
+        }
+    }
+    var photoFromLibraryView: some View {
+        return ImagePickerView(sourceType: .photoLibrary) { image in
+            self.image = image
+        }
     }
 }

@@ -6,12 +6,17 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct RegistrationScreenView: View {
     @EnvironmentObject var loginViewModel: LoginViewModel
     @State var phone: String = ""
     @State var confirmPassword: String = ""
+    @Binding var image: UIImage
     @Binding var registerUser: Bool
+    @State var showCameraImagePicker = false
+    @State var showPhotoLibraryImagePicker = false
+    @State var cameraNotAllowedAlert = false
     var body: some View {
         VStack(alignment: .leading) {
             Text("Confirm Password")
@@ -40,33 +45,53 @@ struct RegistrationScreenView: View {
                 .padding(.top, 10)
             HStack {
                 Spacer()
-                Image(systemName: "person")
+                Image(uiImage: image)
                     .resizable()
-                    .scaledToFit()
-                    .frame(minWidth: UIScreen.main.bounds.size.width * 0.25, maxWidth: UIScreen.main.bounds.size.width * 0.3, minHeight: UIScreen.main.bounds.size.width * 0.25, maxHeight: UIScreen.main.bounds.size.width * 0.3)
-                    .padding(.all, 5)
-                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(.label)))
+                    .aspectRatio(1, contentMode: .fit)
+                    .frame(minWidth: UIScreen.main.bounds.size.width * 0.25, maxWidth: UIScreen.main.bounds.size.width * 0.3)
+                    
+                    //.padding(.all, 5)
+                    .cornerRadius(10)
+                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(.label)).aspectRatio(1, contentMode: .fit))
                     
                 Spacer()
                 VStack {
-                    Button("Use Camera", action: {})
+                    Button("Use Camera", action: {
+                        let camPermission = UIApplication.getCameraPermission()
+                        if camPermission == AVAuthorizationStatus.authorized {
+                            showCameraImagePicker.toggle()
+                        } else if camPermission == AVAuthorizationStatus.denied {
+                            cameraNotAllowedAlert.toggle()
+                        }
+                    })
                         .padding(.all, 10)
                         .frame(width: UIScreen.main.bounds.size.width * 0.4)
                         .background(Color.gray)
                         .foregroundColor(.white)
                         .cornerRadius(10)
-                        
-                    Button("Choose Photo", action: {})
+                        .disabled(!UIImagePickerController.isSourceTypeAvailable(.camera))
+                        .opacity(UIImagePickerController.isSourceTypeAvailable(.camera) ? 1: 0.5)
+                        .fullScreenCover(isPresented: $showCameraImagePicker, content: {
+                            loginViewModel.photoFromCameraView
+                        })
+                        .alert(isPresented: $cameraNotAllowedAlert, content: {
+                            Alert(title: Text("Camera permission is disabled"), message: Text("Go to application settings and enable Camera permission"), primaryButton: .default(Text("Go to settings"), action: {UIApplication.goToAppSettings()}), secondaryButton: .default(Text("No thanks")))
+                        })
+                    Button("Choose Photo", action: {showPhotoLibraryImagePicker.toggle()})
                         .padding(.all, 10)
                         .frame(width: UIScreen.main.bounds.size.width * 0.4)
                         .background(Color.gray)
                         .foregroundColor(.white)
                         .cornerRadius(10)
+                        .disabled(!UIImagePickerController.isSourceTypeAvailable(.photoLibrary))
+                        .opacity(UIImagePickerController.isSourceTypeAvailable(.photoLibrary) ? 1: 0.5)
+                        .fullScreenCover(isPresented: $showPhotoLibraryImagePicker, content: {
+                            loginViewModel.photoFromLibraryView
+                        })
                     
                 }.padding(.trailing, 15)
                 Spacer()
             }
-            
             HStack {
                 Spacer()
                 Button("Register", action: {})
@@ -90,12 +115,17 @@ struct RegistrationScreenView: View {
                 Spacer()
             }.padding(.horizontal)
         }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            self.hideKeyboard()
+        }
+
     }
 }
 
 struct RegistrationScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationScreenView(registerUser: .constant(true))
+        RegistrationScreenView(image: .constant(UIImage(systemName: "person")!), registerUser: .constant(true))
             .environmentObject(LoginViewModel())
     }
 }
