@@ -15,18 +15,20 @@ enum LoginResult {
 }
 
 protocol LoginViewModelDelegate {
+    func resetRegistrationData()
     func processLogin() -> LoginResult
 }
-
 
 class LoginViewModel: ObservableObject {
     @Published var email = ""
     @Published var password = ""
-    @Published var saveLoginInfo: Bool = false
+    @Published var confirmPassword = ""
+    @Published var phone = ""
     @Published var message: String = ""
     @Published var image: UIImage = UIImage(named: "noimage")!
     @Published var validEmail = false
-        
+    @Published var saveLoginInfo: Bool = false
+
     private var disposables = Set<AnyCancellable>()
         
     var isEmailValid: AnyPublisher<Bool, Never> {
@@ -67,6 +69,17 @@ class LoginViewModel: ObservableObject {
 }
 
 extension LoginViewModel: LoginViewModelDelegate {
+    
+    func resetRegistrationData() {
+        email = ""
+        password = ""
+        confirmPassword = ""
+        phone = ""
+        message = ""
+        image = UIImage(named: "noimage")!
+        validEmail = false
+    }
+    
     func processLogin() -> LoginResult {
         let users = CoreDataUtilities.fetchUsers(with: email)
         if let user = users.first {

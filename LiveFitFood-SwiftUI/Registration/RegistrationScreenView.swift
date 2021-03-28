@@ -10,29 +10,19 @@ import AVFoundation
 
 struct RegistrationScreenView: View {
     @EnvironmentObject var loginViewModel: LoginViewModel
-    @State var phone: String = ""
-    @State var confirmPassword: String = ""
-    @Binding var image: UIImage
     @Binding var registerUser: Bool
     @State var showCameraImagePicker = false
     @State var showPhotoLibraryImagePicker = false
     @State var cameraNotAllowedAlert = false
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Confirm Password")
-                .font(.subheadline)
-                .padding(.top, 5)
-            SecureField("Re-enter password", text: $confirmPassword)
-                .padding(.horizontal, 10)
-                .padding(.vertical, 5)
-                .minimumScaleFactor(0.8)
-                .background(Color(.secondarySystemBackground))
-            
+        VStack(alignment: .leading) {            
+            PasswordPromptView(registerUser: $registerUser, textLabel: .constant("Confirm Password"), passwordPlaceholder: .constant("Re-enter password"), passwordInput: $loginViewModel.confirmPassword)
+
             Text("Phone number")
                 .font(.subheadline)
                 .padding(.top, 10)
                 
-            TextField("e.g. +1-416-555-6789", text: $phone)
+            TextField("e.g. +1-416-555-6789", text: $loginViewModel.phone)
                 .textContentType(.emailAddress)
                 .autocapitalization(.none)
                 .padding(.horizontal, 10)
@@ -45,12 +35,11 @@ struct RegistrationScreenView: View {
                 .padding(.top, 10)
             HStack {
                 Spacer()
-                Image(uiImage: image)
+                Image(uiImage: loginViewModel.image)
                     .resizable()
                     .aspectRatio(1, contentMode: .fit)
                     .frame(minWidth: UIScreen.main.bounds.size.width * 0.25, maxWidth: UIScreen.main.bounds.size.width * 0.3)
                     
-                    //.padding(.all, 5)
                     .cornerRadius(10)
                     .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(.label)).aspectRatio(1, contentMode: .fit))
                     
@@ -105,6 +94,7 @@ struct RegistrationScreenView: View {
                 
                 Button("Cancel", action: {
                     registerUser.toggle()
+                    loginViewModel.resetRegistrationData()
                     loginViewModel.message = ""
                 })
                     .padding(.all, 10)
@@ -125,7 +115,7 @@ struct RegistrationScreenView: View {
 
 struct RegistrationScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationScreenView(image: .constant(UIImage(systemName: "person")!), registerUser: .constant(true))
+        RegistrationScreenView(registerUser: .constant(true))
             .environmentObject(LoginViewModel())
     }
 }

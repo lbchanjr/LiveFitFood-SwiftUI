@@ -31,15 +31,10 @@ struct LoginScreenView: View {
                 .padding(.vertical, 5)
                 .minimumScaleFactor(0.8)
                 .background(Color(.secondarySystemBackground))
+                .opacity(registerUser ? 0.5: 1)
+                .disabled(registerUser)
             
-            Text("Password")
-                .font(.subheadline)
-                .padding(.top, registerUser ? 5 : 10)
-            SecureField("Enter password", text: $loginViewModel.password)
-                .padding(.horizontal, 10)
-                .padding(.vertical, 5)
-                .minimumScaleFactor(0.8)
-                .background(Color(.secondarySystemBackground))
+            PasswordPromptView(registerUser: $registerUser, textLabel: .constant("Password"), passwordPlaceholder: .constant("Enter password"), passwordInput: $loginViewModel.password)
             
             if !registerUser {
                 HStack {
@@ -70,7 +65,7 @@ struct LoginScreenView: View {
                 Toggle("Save username and password?", isOn: $loginViewModel.saveLoginInfo)
                     .padding()
             } else {
-                RegistrationScreenView(image: $loginViewModel.image, registerUser: $registerUser)
+                RegistrationScreenView(registerUser: $registerUser)
             }
             
             Spacer()
@@ -122,3 +117,5 @@ struct LoginScreenView_Previews: PreviewProvider {
             .previewDevice("iPhone SE (2nd generation)")
     }
 }
+
+
