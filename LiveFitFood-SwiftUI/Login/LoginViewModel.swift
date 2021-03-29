@@ -16,6 +16,7 @@ enum LoginResult {
 
 protocol LoginViewModelDelegate {
     func resetRegistrationData()
+    func registerUser()
     func processLogin() -> LoginResult
 }
 
@@ -27,21 +28,28 @@ class LoginViewModel: ObservableObject {
     @Published var message: String = ""
     @Published var image: UIImage = UIImage(named: "noimage")!
     @Published var validEmail = false
+    @Published var allowRegister = false
     @Published var saveLoginInfo: Bool = false
 
     private var disposables = Set<AnyCancellable>()
         
     var isEmailValid: AnyPublisher<Bool, Never> {
         $email
-            .debounce(for: 0.8, scheduler: RunLoop.main)
+            .debounce(for: 0.5, scheduler: RunLoop.main)
             .map {(self.isValidEmail($0) && !$0.isEmpty) || $0.isEmpty}
             .eraseToAnyPublisher()
     }
     
     var isPasswordEmpty: AnyPublisher<Bool, Never> {
         $password
-            .debounce(for: 0.8, scheduler: RunLoop.main)
-            .map {!$0.isEmpty}
+            .debounce(for: 0.5, scheduler: RunLoop.main)
+            .map {$0.isEmpty}
+            .eraseToAnyPublisher()
+    }
+    
+    var isPasswordConfirmed: AnyPublisher<Bool, Never> {
+        Publishers.CombineLatest($password, $confirmPassword)
+            .map {$0 == $1}
             .eraseToAnyPublisher()
     }
     
@@ -57,6 +65,12 @@ class LoginViewModel: ObservableObject {
           .map({$0 && !self.email.isEmpty})
           .assign(to: \.validEmail, on: self)
           .store(in: &disposables)
+        
+        Publishers.CombineLatest(isPasswordEmpty, isPasswordConfirmed)
+            .map {!$0 && $1}
+            .assign(to: \.allowRegister, on: self)
+            .store(in: &disposables)
+        
     }
     
     private func isValidEmail(_ email: String) -> Bool {
@@ -80,6 +94,12 @@ extension LoginViewModel: LoginViewModelDelegate {
         validEmail = false
     }
     
+    func registerUser() {
+        print("User will be registered")
+        CoreDataUtilities.addUserToDatabase(email: email, password: password, phone: phone, photo: image)
+        resetRegistrationData()
+    }
+    
     func processLogin() -> LoginResult {
         let users = CoreDataUtilities.fetchUsers(with: email)
         if let user = users.first {
@@ -87,7 +107,6 @@ extension LoginViewModel: LoginViewModelDelegate {
                 message = ""
                 return .loginOK
             } else {
-                print("user password: \(password)")
                 message = "Invalid password"
                 return .invalidPassword
             }

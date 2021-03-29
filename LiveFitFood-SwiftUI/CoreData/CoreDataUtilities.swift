@@ -33,6 +33,21 @@ class CoreDataUtilities {
         return users
         
     }
+    
+    static func addUserToDatabase(email: String, password: String, phone: String, photo: UIImage ) {
+        let user = User(context: viewContext)
+        user.email = email
+        user.password = password
+        user.phone = phone
+        user.photo = photo.pngData()
+        
+        // save data to database
+        do {
+            try viewContext.save()
+        } catch {
+            print("Error adding user to database")
+        }
+    }
 
     
 }

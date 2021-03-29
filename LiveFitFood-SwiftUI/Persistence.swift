@@ -14,8 +14,6 @@ struct PersistenceController {
 //        let viewContext = retVal.container.viewContext
 //        loadTestItems(viewContext: viewContext)
 //
-//        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
-//        print(paths[0])
 //
 //        do {
 //            try viewContext.save()
@@ -63,6 +61,11 @@ struct PersistenceController {
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
+
+        // Prints the location of the databaseL
+        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        print(paths[0])
+
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.

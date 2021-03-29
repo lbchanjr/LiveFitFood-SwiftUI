@@ -83,12 +83,17 @@ struct RegistrationScreenView: View {
             }
             HStack {
                 Spacer()
-                Button("Register", action: {})
+                Button("Register") {
+                    loginViewModel.registerUser()
+                    registerUser.toggle()
+                }
                     .padding(.all, 10)
                     .frame(width: UIScreen.main.bounds.size.width * 0.5)
                     .background(Color.blue)
                     .foregroundColor(.white)
                     .cornerRadius(10)
+                    .opacity(loginViewModel.allowRegister ? 1: 0.5)
+                    .disabled(!loginViewModel.allowRegister)
                     
                 Spacer()
                 
