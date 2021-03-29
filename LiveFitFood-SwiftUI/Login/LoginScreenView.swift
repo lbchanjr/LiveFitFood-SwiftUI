@@ -108,10 +108,10 @@ struct LoginScreenView_Previews: PreviewProvider {
     static var previews: some View {
         LoginScreenView()
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-            .environmentObject(LoginViewModel())
+            .environmentObject(LoginViewModel(userSettings: UserSettings()))
         LoginScreenView()
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-            .environmentObject(LoginViewModel())
+            .environmentObject(LoginViewModel(userSettings: UserSettings()))
             //.colorScheme(.dark)
             //.background(Color.black)
             .previewDevice("iPhone SE (2nd generation)")

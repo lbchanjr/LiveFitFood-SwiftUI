@@ -14,10 +14,13 @@ struct LiveFitFood_SwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
 //            ContentView()
+
+            let userSettings = UserSettings()
+            let loginViewModel = LoginViewModel(userSettings: userSettings)
             
             LoginScreenView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environmentObject(LoginViewModel())
+                .environmentObject(loginViewModel)
         }
     }
 }

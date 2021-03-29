@@ -121,6 +121,6 @@ struct RegistrationScreenView: View {
 struct RegistrationScreenView_Previews: PreviewProvider {
     static var previews: some View {
         RegistrationScreenView(registerUser: .constant(true))
-            .environmentObject(LoginViewModel())
+            .environmentObject(LoginViewModel(userSettings: UserSettings()))
     }
 }

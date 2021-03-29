@@ -10,6 +10,7 @@
 		874429A1260C37AF0029107F /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874429A0260C37AF0029107F /* ImagePickerView.swift */; };
 		874429A5260D6DDE0029107F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874429A4260D6DDE0029107F /* Extensions.swift */; };
 		874429AB2610249E0029107F /* PasswordPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874429AA2610249E0029107F /* PasswordPromptView.swift */; };
+		874429AE26115B6F0029107F /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874429AD26115B6E0029107F /* UserSettings.swift */; };
 		8770D7812602863500C60605 /* LiveFitFood_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7802602863500C60605 /* LiveFitFood_SwiftUIApp.swift */; };
 		8770D7832602863500C60605 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7822602863500C60605 /* ContentView.swift */; };
 		8770D7852602863900C60605 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8770D7842602863900C60605 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 		874429A0260C37AF0029107F /* ImagePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		874429A4260D6DDE0029107F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		874429AA2610249E0029107F /* PasswordPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PasswordPromptView.swift; path = ../../../../../../../../Applications/PasswordPromptView.swift; sourceTree = "<group>"; };
+		874429AD26115B6E0029107F /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		8770D77D2602863500C60605 /* LiveFitFood-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LiveFitFood-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8770D7802602863500C60605 /* LiveFitFood_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveFitFood_SwiftUIApp.swift; sourceTree = "<group>"; };
 		8770D7822602863500C60605 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 			children = (
 				874429A0260C37AF0029107F /* ImagePickerView.swift */,
 				874429A4260D6DDE0029107F /* Extensions.swift */,
+				874429AD26115B6E0029107F /* UserSettings.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 				874429A1260C37AF0029107F /* ImagePickerView.swift in Sources */,
 				8770D7AB2605AEF900C60605 /* User+CoreDataClass.swift in Sources */,
 				8770D7812602863500C60605 /* LiveFitFood_SwiftUIApp.swift in Sources */,
+				874429AE26115B6F0029107F /* UserSettings.swift in Sources */,
 				8770D7AC2605AEF900C60605 /* User+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

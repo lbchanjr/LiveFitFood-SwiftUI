@@ -21,20 +21,23 @@ protocol LoginViewModelDelegate {
 }
 
 class LoginViewModel: ObservableObject {
-    @Published var email = ""
-    @Published var password = ""
+    @Published var email: String
+    @Published var password: String
     @Published var confirmPassword = ""
     @Published var phone = ""
     @Published var message: String = ""
     @Published var image: UIImage = UIImage(named: "noimage")!
     @Published var validEmail = false
     @Published var allowRegister = false
-    @Published var saveLoginInfo: Bool = false
+    @Published var saveLoginInfo: Bool
 
+    private var userSettings: UserSettings
+    
     private var disposables = Set<AnyCancellable>()
         
     var isEmailValid: AnyPublisher<Bool, Never> {
         $email
+            //.dropFirst()
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .map {(self.isValidEmail($0) && !$0.isEmpty) || $0.isEmpty}
             .eraseToAnyPublisher()
@@ -42,6 +45,7 @@ class LoginViewModel: ObservableObject {
     
     var isPasswordEmpty: AnyPublisher<Bool, Never> {
         $password
+            .dropFirst()
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .map {$0.isEmpty}
             .eraseToAnyPublisher()
@@ -53,7 +57,29 @@ class LoginViewModel: ObservableObject {
             .eraseToAnyPublisher()
     }
     
-    init() {
+    init(userSettings: UserSettings) {
+        
+        self.userSettings = userSettings
+        email = userSettings.email
+        password = userSettings.password
+        saveLoginInfo = userSettings.saveLoginData
+        
+        $email
+            .dropFirst()
+            .debounce(for: 0.8, scheduler: RunLoop.main)
+            .sink {userSettings.email = $0}
+            .store(in: &disposables)
+        
+        $password
+            .dropFirst()
+            .debounce(for: 0.8, scheduler: RunLoop.main)
+            .sink {userSettings.password = $0}
+            .store(in: &disposables)
+        
+        $saveLoginInfo
+            .dropFirst()
+            .sink {userSettings.saveLoginData = $0}
+            .store(in: &disposables)
         
         isEmailValid
             .map {$0 ? "" : "Invalid email"}
@@ -85,13 +111,15 @@ class LoginViewModel: ObservableObject {
 extension LoginViewModel: LoginViewModelDelegate {
     
     func resetRegistrationData() {
-        email = ""
-        password = ""
+        if !saveLoginInfo {
+            email = ""
+            validEmail = false
+            password = ""
+        }
         confirmPassword = ""
         phone = ""
         message = ""
         image = UIImage(named: "noimage")!
-        validEmail = false
     }
     
     func registerUser() {
