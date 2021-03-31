@@ -7,10 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		87280F742614494C002491DA /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87280F702614494C002491DA /* User+CoreDataClass.swift */; };
+		87280F752614494C002491DA /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87280F712614494C002491DA /* User+CoreDataProperties.swift */; };
+		87280F762614494C002491DA /* Mealkit+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87280F722614494C002491DA /* Mealkit+CoreDataClass.swift */; };
+		87280F772614494C002491DA /* Mealkit+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87280F732614494C002491DA /* Mealkit+CoreDataProperties.swift */; };
 		874429A1260C37AF0029107F /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874429A0260C37AF0029107F /* ImagePickerView.swift */; };
 		874429A5260D6DDE0029107F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874429A4260D6DDE0029107F /* Extensions.swift */; };
 		874429AB2610249E0029107F /* PasswordPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874429AA2610249E0029107F /* PasswordPromptView.swift */; };
 		874429AE26115B6F0029107F /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874429AD26115B6E0029107F /* UserSettings.swift */; };
+		874429B32613AA9C0029107F /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874429B22613AA9C0029107F /* WelcomeScreenView.swift */; };
+		874429B82613B3B50029107F /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874429B72613B3B50029107F /* UserModel.swift */; };
+		874429BB261401680029107F /* WelcomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874429BA261401680029107F /* WelcomeScreenViewModel.swift */; };
+		874429BE261413900029107F /* mealkits.json in Resources */ = {isa = PBXBuildFile; fileRef = 874429BD2614138F0029107F /* mealkits.json */; };
+		874429C12614248B0029107F /* LiveFitFoodData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874429C02614248A0029107F /* LiveFitFoodData.swift */; };
 		8770D7812602863500C60605 /* LiveFitFood_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7802602863500C60605 /* LiveFitFood_SwiftUIApp.swift */; };
 		8770D7832602863500C60605 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7822602863500C60605 /* ContentView.swift */; };
 		8770D7852602863900C60605 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8770D7842602863900C60605 /* Assets.xcassets */; };
@@ -20,17 +29,24 @@
 		8770D7982603EF9800C60605 /* LoginScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7972603EF9700C60605 /* LoginScreenView.swift */; };
 		8770D7A226051A0300C60605 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7A126051A0300C60605 /* LoginViewModel.swift */; };
 		8770D7A6260598AB00C60605 /* CoreDataUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7A5260598AB00C60605 /* CoreDataUtilities.swift */; };
-		8770D7AB2605AEF900C60605 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7A92605AEF900C60605 /* User+CoreDataClass.swift */; };
-		8770D7AC2605AEF900C60605 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7AA2605AEF900C60605 /* User+CoreDataProperties.swift */; };
 		8770D7B02607940500C60605 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7AF2607940400C60605 /* HeaderView.swift */; };
 		8770D7B52607E20300C60605 /* RegistrationScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7B42607E20200C60605 /* RegistrationScreenView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		87280F702614494C002491DA /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		87280F712614494C002491DA /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		87280F722614494C002491DA /* Mealkit+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mealkit+CoreDataClass.swift"; sourceTree = "<group>"; };
+		87280F732614494C002491DA /* Mealkit+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mealkit+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		874429A0260C37AF0029107F /* ImagePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		874429A4260D6DDE0029107F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		874429AA2610249E0029107F /* PasswordPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PasswordPromptView.swift; path = ../../../../../../../../Applications/PasswordPromptView.swift; sourceTree = "<group>"; };
 		874429AD26115B6E0029107F /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		874429B22613AA9C0029107F /* WelcomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenView.swift; sourceTree = "<group>"; };
+		874429B72613B3B50029107F /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		874429BA261401680029107F /* WelcomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewModel.swift; sourceTree = "<group>"; };
+		874429BD2614138F0029107F /* mealkits.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mealkits.json; sourceTree = "<group>"; };
+		874429C02614248A0029107F /* LiveFitFoodData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveFitFoodData.swift; sourceTree = "<group>"; };
 		8770D77D2602863500C60605 /* LiveFitFood-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LiveFitFood-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8770D7802602863500C60605 /* LiveFitFood_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveFitFood_SwiftUIApp.swift; sourceTree = "<group>"; };
 		8770D7822602863500C60605 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -42,8 +58,6 @@
 		8770D7972603EF9700C60605 /* LoginScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenView.swift; sourceTree = "<group>"; };
 		8770D7A126051A0300C60605 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		8770D7A5260598AB00C60605 /* CoreDataUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtilities.swift; sourceTree = "<group>"; };
-		8770D7A92605AEF900C60605 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
-		8770D7AA2605AEF900C60605 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8770D7AF2607940400C60605 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		8770D7B42607E20200C60605 /* RegistrationScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationScreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,6 +83,24 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		874429B12613AA770029107F /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				874429B22613AA9C0029107F /* WelcomeScreenView.swift */,
+				874429BA261401680029107F /* WelcomeScreenViewModel.swift */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		874429B62613B38A0029107F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				874429B72613B3B50029107F /* UserModel.swift */,
+				874429C02614248A0029107F /* LiveFitFoodData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		8770D7742602863500C60605 = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +120,8 @@
 		8770D77F2602863500C60605 /* LiveFitFood-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				874429B62613B38A0029107F /* Models */,
+				874429B12613AA770029107F /* Welcome */,
 				8744299C260C18E60029107F /* Utilities */,
 				8770D7A42605988700C60605 /* CoreData */,
 				8770D7B32607E1B200C60605 /* Registration */,
@@ -125,8 +159,11 @@
 		8770D7A42605988700C60605 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				8770D7A92605AEF900C60605 /* User+CoreDataClass.swift */,
-				8770D7AA2605AEF900C60605 /* User+CoreDataProperties.swift */,
+				874429BD2614138F0029107F /* mealkits.json */,
+				87280F702614494C002491DA /* User+CoreDataClass.swift */,
+				87280F712614494C002491DA /* User+CoreDataProperties.swift */,
+				87280F722614494C002491DA /* Mealkit+CoreDataClass.swift */,
+				87280F732614494C002491DA /* Mealkit+CoreDataProperties.swift */,
 				8770D7A5260598AB00C60605 /* CoreDataUtilities.swift */,
 			);
 			path = CoreData;
@@ -198,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8770D7882602863900C60605 /* Preview Assets.xcassets in Resources */,
+				874429BE261413900029107F /* mealkits.json in Resources */,
 				8770D7852602863900C60605 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,18 +250,24 @@
 				8770D7982603EF9800C60605 /* LoginScreenView.swift in Sources */,
 				8770D78A2602863900C60605 /* Persistence.swift in Sources */,
 				8770D7B52607E20300C60605 /* RegistrationScreenView.swift in Sources */,
+				87280F772614494C002491DA /* Mealkit+CoreDataProperties.swift in Sources */,
 				8770D7A6260598AB00C60605 /* CoreDataUtilities.swift in Sources */,
 				8770D7A226051A0300C60605 /* LoginViewModel.swift in Sources */,
 				874429AB2610249E0029107F /* PasswordPromptView.swift in Sources */,
 				8770D7832602863500C60605 /* ContentView.swift in Sources */,
 				8770D7B02607940500C60605 /* HeaderView.swift in Sources */,
+				874429B82613B3B50029107F /* UserModel.swift in Sources */,
+				87280F762614494C002491DA /* Mealkit+CoreDataClass.swift in Sources */,
 				8770D78D2602863900C60605 /* LiveFitFood_SwiftUI.xcdatamodeld in Sources */,
+				87280F752614494C002491DA /* User+CoreDataProperties.swift in Sources */,
+				874429B32613AA9C0029107F /* WelcomeScreenView.swift in Sources */,
+				874429BB261401680029107F /* WelcomeScreenViewModel.swift in Sources */,
 				874429A5260D6DDE0029107F /* Extensions.swift in Sources */,
 				874429A1260C37AF0029107F /* ImagePickerView.swift in Sources */,
-				8770D7AB2605AEF900C60605 /* User+CoreDataClass.swift in Sources */,
+				87280F742614494C002491DA /* User+CoreDataClass.swift in Sources */,
+				874429C12614248B0029107F /* LiveFitFoodData.swift in Sources */,
 				8770D7812602863500C60605 /* LiveFitFood_SwiftUIApp.swift in Sources */,
 				874429AE26115B6F0029107F /* UserSettings.swift in Sources */,
-				8770D7AC2605AEF900C60605 /* User+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,16 +15,26 @@
         <attribute name="calories" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="photo" optional="YES" attributeType="String"/>
-        <relationship name="mealkits" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Mealkit" inverseName="meals" inverseEntity="Mealkit"/>
+        <relationship name="mealkits" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Mealkit" inverseName="meals" inverseEntity="Mealkit"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="name"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
-    <entity name="Mealkit" representedClassName="Mealkit" syncable="YES" codeGenerationType="class">
+    <entity name="Mealkit" representedClassName="Mealkit" syncable="YES">
         <attribute name="desc" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="photo" optional="YES" attributeType="String"/>
         <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="sku" optional="YES" attributeType="String"/>
-        <relationship name="meals" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Meal" inverseName="mealkits" inverseEntity="Meal"/>
-        <relationship name="orders" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="item" inverseEntity="Order"/>
+        <relationship name="meals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Meal" inverseName="mealkits" inverseEntity="Meal"/>
+        <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Order" inverseName="item" inverseEntity="Order"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="name"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="Order" representedClassName="Order" syncable="YES" codeGenerationType="class">
         <attribute name="datetime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -40,15 +50,20 @@
         <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="phone" optional="YES" attributeType="String"/>
         <attribute name="photo" optional="YES" attributeType="Binary"/>
-        <relationship name="coupons" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Coupon" inverseName="owner" inverseEntity="Coupon"/>
-        <relationship name="orders" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="buyer" inverseEntity="Order"/>
+        <relationship name="coupons" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Coupon" inverseName="owner" inverseEntity="Coupon"/>
+        <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Order" inverseName="buyer" inverseEntity="Order"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="email"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
-        <element name="User" positionX="-54" positionY="0" width="128" height="119"/>
-        <element name="Order" positionX="-36" positionY="36" width="128" height="134"/>
         <element name="Coupon" positionX="-18" positionY="81" width="128" height="119"/>
-        <element name="Mealkit" positionX="0" positionY="117" width="128" height="134"/>
+        <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
         <element name="Meal" positionX="18" positionY="144" width="128" height="89"/>
+        <element name="Mealkit" positionX="0" positionY="117" width="128" height="134"/>
+        <element name="Order" positionX="-36" positionY="36" width="128" height="134"/>
+        <element name="User" positionX="-54" positionY="0" width="128" height="119"/>
     </elements>
 </model>
