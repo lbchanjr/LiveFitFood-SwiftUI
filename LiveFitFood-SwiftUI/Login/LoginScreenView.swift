@@ -9,9 +9,11 @@ import SwiftUI
 import CoreData
 
 struct LoginScreenView: View {
-    @State var userLoggedIn = false
+    //@State var userLoggedIn = false
     @State var registerUser = false
     @EnvironmentObject var loginViewModel: LoginViewModel
+    
+    @EnvironmentObject var userStatus: UserStatus
                 
     var body: some View {
         
@@ -48,14 +50,15 @@ struct LoginScreenView: View {
                     .foregroundColor(.white)
                     .cornerRadius(10)
                     .opacity(loginViewModel.validEmail ? 1.0: 0.5)
-                    .fullScreenCover(isPresented: $userLoggedIn) {
-                        Button("Logout") {
-                            userLoggedIn.toggle()
-                        }
-                        .padding(10)
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                    .fullScreenCover(isPresented: $userStatus.isLoggedIn) {
+//                        Button("Logout") {
+//                            userLoggedIn.toggle()
+//                        }
+//                        .padding(10)
+//                        .background(Color.blue)
+//                        .foregroundColor(.white)
+//                        .cornerRadius(10)
+                        loginViewModel.toWelcomeScreenView
                     }
                     .disabled(!loginViewModel.validEmail)
                     
@@ -91,7 +94,7 @@ struct LoginScreenView: View {
     private func signInButtonPressed() {
         switch(loginViewModel.processLogin()) {
         case .loginOK:
-            userLoggedIn.toggle()
+            userStatus.isLoggedIn.toggle()
         case .newUser:
             registerUser = true
         
@@ -112,6 +115,7 @@ struct LoginScreenView_Previews: PreviewProvider {
         LoginScreenView()
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             .environmentObject(LoginViewModel(userSettings: UserSettings()))
+            .environmentObject(UserStatus())
             //.colorScheme(.dark)
             //.background(Color.black)
             .previewDevice("iPhone SE (2nd generation)")

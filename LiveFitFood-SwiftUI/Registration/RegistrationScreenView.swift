@@ -10,6 +10,7 @@ import AVFoundation
 
 struct RegistrationScreenView: View {
     @EnvironmentObject var loginViewModel: LoginViewModel
+    @EnvironmentObject var userStatus: UserStatus
     @Binding var registerUser: Bool
     @State var showCameraImagePicker = false
     @State var showPhotoLibraryImagePicker = false
@@ -83,9 +84,10 @@ struct RegistrationScreenView: View {
             }
             HStack {
                 Spacer()
-                Button("Register") {
+                Button("Register and Sign-in") {
                     loginViewModel.registerUser()
                     registerUser.toggle()
+                    userStatus.isLoggedIn.toggle()
                 }
                     .padding(.all, 10)
                     .frame(width: UIScreen.main.bounds.size.width * 0.5)
@@ -122,5 +124,6 @@ struct RegistrationScreenView_Previews: PreviewProvider {
     static var previews: some View {
         RegistrationScreenView(registerUser: .constant(true))
             .environmentObject(LoginViewModel(userSettings: UserSettings()))
+            .environmentObject(UserStatus())
     }
 }

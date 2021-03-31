@@ -147,15 +147,22 @@ extension LoginViewModel: LoginViewModelDelegate {
     }
 }
 
+// MARK: In the future, implement this using a view coordinator.
 extension LoginViewModel {
     var photoFromCameraView: some View {
         return ImagePickerView(sourceType: .camera) { image in
             self.image = image
         }
     }
+    
     var photoFromLibraryView: some View {
         return ImagePickerView(sourceType: .photoLibrary) { image in
             self.image = image
         }
+    }
+    
+    var toWelcomeScreenView: some View {
+        return WelcomeScreenView(welcomeScreenViewModel: WelcomeScreenViewModel())
+            .environmentObject(LoggedInUser(email: email, phone: phone, image: image))
     }
 }

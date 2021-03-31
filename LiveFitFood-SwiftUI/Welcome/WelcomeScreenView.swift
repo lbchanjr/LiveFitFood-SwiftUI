@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WelcomeScreenView: View {
     @EnvironmentObject var user: LoggedInUser
-    
+    @EnvironmentObject var userStatus: UserStatus
     var welcomeScreenViewModel: WelcomeScreenViewModel
     
     var body: some View {
@@ -25,10 +25,11 @@ struct WelcomeScreenView: View {
                     Text("Welcome!")
                         .font(.title)
                     Text(user.email)
-                        .font(.title2)
+                        .font(.title3)
+                        .lineLimit(1)
                         .minimumScaleFactor(0.7)
-                    Button("Logout", action: {})
-                        .font(.title2)
+                    Button("Logout", action: {userStatus.isLoggedIn.toggle()})
+                        .font(.title3)
                         .frame(maxWidth: .infinity)
                         .padding(.all, 5)
                         .background(Color.blue)
@@ -58,5 +59,6 @@ struct WelcomeScreenView_Previews: PreviewProvider {
     static var previews: some View {
         WelcomeScreenView(welcomeScreenViewModel: WelcomeScreenViewModel())
             .environmentObject(LoggedInUser(email: "abcde@gmail.com", phone: "+1-234-567-8999", image: UIImage(systemName: "person.fill")))
+            .environmentObject(UserStatus())
     }
 }

@@ -19,3 +19,7 @@ class LoggedInUser: ObservableObject {
         self.image = image
     }
 }
+
+class UserStatus: ObservableObject {
+    @Published var isLoggedIn: Bool = false
+}
