@@ -112,6 +112,7 @@ struct LoginScreenView_Previews: PreviewProvider {
         LoginScreenView()
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             .environmentObject(LoginViewModel(userSettings: UserSettings()))
+            .environmentObject(UserStatus())
         LoginScreenView()
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             .environmentObject(LoginViewModel(userSettings: UserSettings()))

@@ -133,6 +133,10 @@ extension LoginViewModel: LoginViewModelDelegate {
         if let user = users.first {
             if user.password == password {
                 message = ""
+                if let photoData = user.photo {
+                    image = UIImage(data: photoData) ?? UIImage(named: "noimage")!
+                }
+                
                 return .loginOK
             } else {
                 message = "Invalid password"

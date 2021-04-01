@@ -11,6 +11,7 @@
 		87280F752614494C002491DA /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87280F712614494C002491DA /* User+CoreDataProperties.swift */; };
 		87280F762614494C002491DA /* Mealkit+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87280F722614494C002491DA /* Mealkit+CoreDataClass.swift */; };
 		87280F772614494C002491DA /* Mealkit+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87280F732614494C002491DA /* Mealkit+CoreDataProperties.swift */; };
+		87280F7B26154A4D002491DA /* MealkitDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87280F7A26154A4D002491DA /* MealkitDetailsView.swift */; };
 		874429A1260C37AF0029107F /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874429A0260C37AF0029107F /* ImagePickerView.swift */; };
 		874429A5260D6DDE0029107F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874429A4260D6DDE0029107F /* Extensions.swift */; };
 		874429AB2610249E0029107F /* PasswordPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874429AA2610249E0029107F /* PasswordPromptView.swift */; };
@@ -38,6 +39,7 @@
 		87280F712614494C002491DA /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		87280F722614494C002491DA /* Mealkit+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mealkit+CoreDataClass.swift"; sourceTree = "<group>"; };
 		87280F732614494C002491DA /* Mealkit+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mealkit+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		87280F7A26154A4D002491DA /* MealkitDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealkitDetailsView.swift; sourceTree = "<group>"; };
 		874429A0260C37AF0029107F /* ImagePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		874429A4260D6DDE0029107F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		874429AA2610249E0029107F /* PasswordPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PasswordPromptView.swift; path = ../../../../../../../../Applications/PasswordPromptView.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			children = (
 				874429B22613AA9C0029107F /* WelcomeScreenView.swift */,
 				874429BA261401680029107F /* WelcomeScreenViewModel.swift */,
+				87280F7A26154A4D002491DA /* MealkitDetailsView.swift */,
 			);
 			path = Welcome;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				874429A1260C37AF0029107F /* ImagePickerView.swift in Sources */,
 				87280F742614494C002491DA /* User+CoreDataClass.swift in Sources */,
 				874429C12614248B0029107F /* LiveFitFoodData.swift in Sources */,
+				87280F7B26154A4D002491DA /* MealkitDetailsView.swift in Sources */,
 				8770D7812602863500C60605 /* LiveFitFood_SwiftUIApp.swift in Sources */,
 				874429AE26115B6F0029107F /* UserSettings.swift in Sources */,
 			);
