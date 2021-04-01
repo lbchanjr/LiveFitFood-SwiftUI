@@ -7,12 +7,44 @@
 
 import SwiftUI
 
+
 struct MealkitDetailsView: View {
     
     var mealkit: Mealkit
-    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            //List(meals, id: \.self) { meal in
+            List {
+                ForEach(mealkit.meals?.allObjects as! [Meal]) { meal in
+                    //Text((meal as Meal).name ?? "")
+                    HStack {
+                        Image((meal as Meal).photo ?? "noimage")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: UIScreen.main.bounds.width * 0.25, height: UIScreen.main.bounds.width * 0.25)
+                            .clipped()
+                        VStack(alignment: .leading) {
+                            Spacer()
+                            Text((meal as Meal).name ?? "")
+                                .bold()
+                                .font(.title3)
+                            Spacer()
+                            Text("\(String((meal as Meal).calories))kCal")
+                                .font(.title3)
+                            Spacer()
+                        }
+                    }
+                }
+            }.padding(.bottom, 10)
+            Button("Checkout", action: {})
+                .frame(width: UIScreen.main.bounds.width * 0.7)
+                .padding(.vertical)
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(5)
+                .font(.title3)
+        }
+        .navigationBarTitle(mealkit.name ?? "")
     }
 }
 

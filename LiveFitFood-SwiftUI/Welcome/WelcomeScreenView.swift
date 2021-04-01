@@ -11,6 +11,7 @@ struct WelcomeScreenView: View {
     @EnvironmentObject var user: LoggedInUser
     @EnvironmentObject var userStatus: UserStatus
     var welcomeScreenViewModel: WelcomeScreenViewModel
+    let testString = ["1","2","3","4","5"]
     
     var body: some View {
         NavigationView {
@@ -72,7 +73,6 @@ struct WelcomeScreenView: View {
                     }
                     
                 }
-                
                 .navigationBarHidden(true)
                 
                 

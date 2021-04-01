@@ -177,5 +177,9 @@ class CoreDataUtilities {
         return (mealkits, meals)
     }
     
-    
+    static func getMealsFromMealkit(mealkit: Mealkit) -> [Meal] {
+        let sort = NSSortDescriptor(key: "name", ascending: true)
+        return mealkit.meals?.sortedArray(using: [sort]) as! [Meal]
+    }
+
 }
