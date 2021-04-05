@@ -35,6 +35,7 @@
 		8770D7A6260598AB00C60605 /* CoreDataUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7A5260598AB00C60605 /* CoreDataUtilities.swift */; };
 		8770D7B02607940500C60605 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7AF2607940400C60605 /* HeaderView.swift */; };
 		8770D7B52607E20300C60605 /* RegistrationScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7B42607E20200C60605 /* RegistrationScreenView.swift */; };
+		87A53D38261AAA9700A22925 /* OrderSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A53D37261AAA9700A22925 /* OrderSummaryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		8770D7A5260598AB00C60605 /* CoreDataUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtilities.swift; sourceTree = "<group>"; };
 		8770D7AF2607940400C60605 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		8770D7B42607E20200C60605 /* RegistrationScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationScreenView.swift; sourceTree = "<group>"; };
+		87A53D37261AAA9700A22925 /* OrderSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 		8770D77F2602863500C60605 /* LiveFitFood-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				87A53D36261AAA6600A22925 /* OrderSummary */,
 				870F536B2616996F00AF9937 /* Checkout */,
 				874429B62613B38A0029107F /* Models */,
 				874429B12613AA770029107F /* Welcome */,
@@ -195,6 +198,14 @@
 				8770D7B42607E20200C60605 /* RegistrationScreenView.swift */,
 			);
 			path = Registration;
+			sourceTree = "<group>";
+		};
+		87A53D36261AAA6600A22925 /* OrderSummary */ = {
+			isa = PBXGroup;
+			children = (
+				87A53D37261AAA9700A22925 /* OrderSummaryView.swift */,
+			);
+			path = OrderSummary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,6 +294,7 @@
 				87280F752614494C002491DA /* User+CoreDataProperties.swift in Sources */,
 				870F53712617AF4700AF9937 /* MockData.swift in Sources */,
 				874429B32613AA9C0029107F /* WelcomeScreenView.swift in Sources */,
+				87A53D38261AAA9700A22925 /* OrderSummaryView.swift in Sources */,
 				870F536D2616998700AF9937 /* CheckoutView.swift in Sources */,
 				874429BB261401680029107F /* WelcomeScreenViewModel.swift in Sources */,
 				874429A5260D6DDE0029107F /* Extensions.swift in Sources */,

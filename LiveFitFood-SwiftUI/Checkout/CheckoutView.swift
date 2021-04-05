@@ -16,12 +16,14 @@ enum CouponDiscount: Double {
 struct CheckoutView: View {
     //@EnvironmentObject var mealkit: Mealkit
     //@EnvironmentObject var loggedUser: LoggedInUser
+    //@Environment(\.presentationMode) var presentationMode: Binding
     
     @ObservedObject var checkoutViewModel: CheckoutViewModel
     
     @State var tipAmountString = "0.00"
     @State var tipPercent = 0
     @State var couponValue = CouponDiscount.none
+    @State var selection: Int?
     
     var body: some View {
         VStack {
@@ -124,12 +126,34 @@ struct CheckoutView: View {
                 }
             }
             .navigationBarTitle("Order Review")
-            Button("Proceed", action: {})
+
+            NavigationLink(destination: OrderSummaryView(), tag: 1, selection: $selection) {
+                Button("Proceed", action: {
+                    print("Proceed clicked!")
+                    selection = 1
+                })
                 .frame(width: UIScreen.main.bounds.width * 0.65)
                 .padding(.vertical)
                 .background(Color.blue)
                 .foregroundColor(.white)
                 .cornerRadius(10)
+            }
+//            .onAppear(perform: {self.selection = nil})
+//            {
+//                if(self.presentationMode.wrappedValue.isPresented == false) {
+//                    print("You click the back button")
+//                }
+//            }
+            
+//            NavigationLink(destination: OrderSummaryView()) {
+//                Text("Proceed")
+//                    .frame(width: UIScreen.main.bounds.width * 0.65)
+//                    .padding(.vertical)
+//                    .background(Color.blue)
+//                    .foregroundColor(.white)
+//                    .cornerRadius(10)
+//                    .font(.title3)
+//            }
         }
         
     }
