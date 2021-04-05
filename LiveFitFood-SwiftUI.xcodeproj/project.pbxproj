@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		870F5368261664AE00AF9937 /* Mealkit+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F5366261664AE00AF9937 /* Mealkit+CoreDataClass.swift */; };
 		870F5369261664AE00AF9937 /* Mealkit+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F5367261664AE00AF9937 /* Mealkit+CoreDataProperties.swift */; };
+		870F536D2616998700AF9937 /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F536C2616998700AF9937 /* CheckoutView.swift */; };
+		870F53712617AF4700AF9937 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F53702617AF4700AF9937 /* MockData.swift */; };
+		870F537526189AD500AF9937 /* CheckoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F537426189AD400AF9937 /* CheckoutViewModel.swift */; };
 		87280F742614494C002491DA /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87280F702614494C002491DA /* User+CoreDataClass.swift */; };
 		87280F752614494C002491DA /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87280F712614494C002491DA /* User+CoreDataProperties.swift */; };
 		87280F7B26154A4D002491DA /* MealkitDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87280F7A26154A4D002491DA /* MealkitDetailsView.swift */; };
@@ -37,6 +40,9 @@
 /* Begin PBXFileReference section */
 		870F5366261664AE00AF9937 /* Mealkit+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mealkit+CoreDataClass.swift"; sourceTree = "<group>"; };
 		870F5367261664AE00AF9937 /* Mealkit+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mealkit+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		870F536C2616998700AF9937 /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
+		870F53702617AF4700AF9937 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		870F537426189AD400AF9937 /* CheckoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewModel.swift; sourceTree = "<group>"; };
 		87280F702614494C002491DA /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		87280F712614494C002491DA /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		87280F7A26154A4D002491DA /* MealkitDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealkitDetailsView.swift; sourceTree = "<group>"; };
@@ -75,6 +81,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		870F536B2616996F00AF9937 /* Checkout */ = {
+			isa = PBXGroup;
+			children = (
+				870F536C2616998700AF9937 /* CheckoutView.swift */,
+				870F537426189AD400AF9937 /* CheckoutViewModel.swift */,
+			);
+			path = Checkout;
+			sourceTree = "<group>";
+		};
 		8744299C260C18E60029107F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +115,7 @@
 			children = (
 				874429B72613B3B50029107F /* UserModel.swift */,
 				874429C02614248A0029107F /* LiveFitFoodData.swift */,
+				870F53702617AF4700AF9937 /* MockData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -123,6 +139,7 @@
 		8770D77F2602863500C60605 /* LiveFitFood-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				870F536B2616996F00AF9937 /* Checkout */,
 				874429B62613B38A0029107F /* Models */,
 				874429B12613AA770029107F /* Welcome */,
 				8744299C260C18E60029107F /* Utilities */,
@@ -255,6 +272,7 @@
 				870F5368261664AE00AF9937 /* Mealkit+CoreDataClass.swift in Sources */,
 				8770D7B52607E20300C60605 /* RegistrationScreenView.swift in Sources */,
 				870F5369261664AE00AF9937 /* Mealkit+CoreDataProperties.swift in Sources */,
+				870F537526189AD500AF9937 /* CheckoutViewModel.swift in Sources */,
 				8770D7A6260598AB00C60605 /* CoreDataUtilities.swift in Sources */,
 				8770D7A226051A0300C60605 /* LoginViewModel.swift in Sources */,
 				874429AB2610249E0029107F /* PasswordPromptView.swift in Sources */,
@@ -263,7 +281,9 @@
 				874429B82613B3B50029107F /* UserModel.swift in Sources */,
 				8770D78D2602863900C60605 /* LiveFitFood_SwiftUI.xcdatamodeld in Sources */,
 				87280F752614494C002491DA /* User+CoreDataProperties.swift in Sources */,
+				870F53712617AF4700AF9937 /* MockData.swift in Sources */,
 				874429B32613AA9C0029107F /* WelcomeScreenView.swift in Sources */,
+				870F536D2616998700AF9937 /* CheckoutView.swift in Sources */,
 				874429BB261401680029107F /* WelcomeScreenViewModel.swift in Sources */,
 				874429A5260D6DDE0029107F /* Extensions.swift in Sources */,
 				874429A1260C37AF0029107F /* ImagePickerView.swift in Sources */,

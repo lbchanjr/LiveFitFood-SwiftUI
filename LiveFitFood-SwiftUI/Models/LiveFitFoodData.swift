@@ -39,3 +39,4 @@ struct MealData: Codable, CustomStringConvertible, Hashable {
     }
 }
 
+

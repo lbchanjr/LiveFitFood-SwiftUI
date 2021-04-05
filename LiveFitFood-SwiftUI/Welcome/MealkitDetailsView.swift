@@ -10,7 +10,9 @@ import SwiftUI
 
 struct MealkitDetailsView: View {
     
-    var mealkit: Mealkit
+    @EnvironmentObject var mealkit: Mealkit
+    @EnvironmentObject var loggedUser: LoggedInUser
+    
     var body: some View {
         VStack {
             //List(meals, id: \.self) { meal in
@@ -36,13 +38,18 @@ struct MealkitDetailsView: View {
                     }
                 }
             }.padding(.bottom, 10)
-            Button("Checkout", action: {})
-                .frame(width: UIScreen.main.bounds.width * 0.7)
-                .padding(.vertical)
-                .background(Color.blue)
-                .foregroundColor(.white)
-                .cornerRadius(5)
-                .font(.title3)
+            
+            NavigationLink(destination: CheckoutView(checkoutViewModel: CheckoutViewModel(email: loggedUser.email, mealkit: mealkit))
+                //            .environmentObject(mealkit)
+            ) {
+                Text("Checkout")
+                    .frame(width: UIScreen.main.bounds.width * 0.65)
+                    .padding(.vertical)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                    .font(.title3)
+            }
         }
         .navigationBarTitle(mealkit.name ?? "")
     }
@@ -50,7 +57,8 @@ struct MealkitDetailsView: View {
 
 struct MealkitDetailsView_Previews: PreviewProvider {
     static var previews: some View {        
-        MealkitDetailsView(mealkit: Mealkit())
+        MealkitDetailsView(/*mealkit: MealkitMockData().getMealkit()*/)
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environmentObject(MealkitMockData().getMealkit())
     }
 }

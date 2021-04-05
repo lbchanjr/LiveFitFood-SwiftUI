@@ -17,9 +17,6 @@ struct LiveFitFood_SwiftUIApp: App {
 
             let userSettings = UserSettings()
             let loginViewModel = LoginViewModel(userSettings: userSettings)
-            //let welcomeViewModel = WelcomeScreenViewModel()
-            
-            
             
             LoginScreenView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)

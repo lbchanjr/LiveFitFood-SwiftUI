@@ -64,6 +64,21 @@ class CoreDataUtilities {
         return meals
     }
     
+    static func fetchCoupons() -> [Coupon] {
+        var coupons: [Coupon] = []
+        let requestCoupons: NSFetchRequest<Coupon> = Coupon.fetchRequest()
+        
+        do {
+            // store meals in array
+            coupons = try viewContext.fetch(requestCoupons)
+        } catch {
+            print("Error reading coupons from database")
+            fatalError(error.localizedDescription)
+        }
+        
+        return coupons
+    }
+    
     static func addUserToDatabase(email: String, password: String, phone: String, photo: UIImage ) {
         let user = User(context: viewContext)
         user.email = email
@@ -176,10 +191,4 @@ class CoreDataUtilities {
         
         return (mealkits, meals)
     }
-    
-    static func getMealsFromMealkit(mealkit: Mealkit) -> [Meal] {
-        let sort = NSSortDescriptor(key: "name", ascending: true)
-        return mealkit.meals?.sortedArray(using: [sort]) as! [Meal]
-    }
-
 }

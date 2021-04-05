@@ -11,7 +11,6 @@ struct WelcomeScreenView: View {
     @EnvironmentObject var user: LoggedInUser
     @EnvironmentObject var userStatus: UserStatus
     var welcomeScreenViewModel: WelcomeScreenViewModel
-    let testString = ["1","2","3","4","5"]
     
     var body: some View {
         NavigationView {
@@ -50,7 +49,9 @@ struct WelcomeScreenView: View {
                 
                 List(welcomeScreenViewModel.mealkits) { mealkit in
                     NavigationLink(
-                        destination: MealkitDetailsView(mealkit: mealkit)) {
+                        destination: MealkitDetailsView(/*mealkit: mealkit*/)
+                            .environmentObject(mealkit)
+                    ) {
                         HStack {
                             Image(mealkit.photo ?? "noimage")
                                 .resizable()
@@ -74,10 +75,6 @@ struct WelcomeScreenView: View {
                     
                 }
                 .navigationBarHidden(true)
-                
-                
-                
-                
             }
         }
     }
@@ -87,6 +84,7 @@ struct WelcomeScreenView: View {
 struct WelcomeScreenView_Previews: PreviewProvider {
     static var previews: some View {
         WelcomeScreenView(welcomeScreenViewModel: WelcomeScreenViewModel())
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             .environmentObject(LoggedInUser(email: "abcde@gmail.com", phone: "+1-234-567-8999", image: UIImage(systemName: "person.fill")))
             .environmentObject(UserStatus())
     }
