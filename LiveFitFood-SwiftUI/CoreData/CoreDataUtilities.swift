@@ -93,6 +93,29 @@ class CoreDataUtilities {
             print("Error adding user to database")
         }
     }
+    
+    static func addOrderToDatabase(email: String, tip: Double, total: Double, appliedCoupon: Coupon?, item: Mealkit) {
+        let order = Order(context: viewContext)
+        order.datetime = Date()
+        order.number = Int64(order.datetime!.hashValue)
+        order.buyer = fetchUsers(with: email).first
+        order.discount = appliedCoupon
+        order.item = item
+        order.tip = tip
+        order.total = total
+        
+        if appliedCoupon != nil {
+            appliedCoupon?.appliedTo = order
+            appliedCoupon?.isUsed = true
+        }
+        
+        do {
+            try viewContext.save()
+        } catch {
+            print("Error saving order!")
+            print(error.localizedDescription)
+        }
+    }
 
     static func loadJSONDataToSQLite() -> (mealkits: [Mealkit], meals: [Meal]) {
         var mealkits: [Mealkit] = []
@@ -117,37 +140,6 @@ class CoreDataUtilities {
             let results = try decoder.decode(LiveFitFoodData.self, from: data)
             
             //print("Decode json file: \n\(results)")
-//
-//            for mealkitData in results.mealkits {
-//                let mealkit = Mealkit(context: viewContext)
-//                mealkit.name = mealkitData.kitName
-//                mealkit.desc = mealkitData.kitDesc
-//                mealkit.photo = mealkitData.photo
-//                mealkit.price = mealkitData.price
-//                mealkit.sku = mealkitData.sku
-//
-//
-//                for mealData in mealkitData.meals {
-//                    if let index = meals.firstIndex(where: {$0.name == mealData.mealName && $0.calories == mealData.calories && $0.photo == mealData.photo}) {
-//                        mealkit.addToMeals(meals[index])
-//                    } else {
-//                        let meal = Meal(context: viewContext)
-//                        meal.name = mealData.mealName
-//                        meal.calories = mealData.calories
-//                        meal.photo = mealData.photo
-//
-//                        // add meal to meal entity if it is not a duplicate
-//                        meals.append(meal)
-//                        mealkit.addToMeals(meal)
-//                    }
-//                }
-//
-//                // Add mealkit to mealkit entity
-//                mealkits.append(mealkit)
-//            }
-//
-//
-            
             
             mealkits = results.mealkits.map({ (mealkitData) -> Mealkit in
                 let mealkit = Mealkit(context: viewContext)
@@ -159,10 +151,6 @@ class CoreDataUtilities {
                 
                 _ = mealkitData.meals.map({ (mealData) -> Meal in
                     
-//                    if let index = meals.firstIndex(where: {$0.name == mealData.mealName && $0.calories == mealData.calories && $0.photo == mealData.photo}) {
-//                        mealkit.addToMeals(meals[index])
-//                        return meals[index]
-//                    } else {
                         let meal = Meal(context: viewContext)
                         meal.name = mealData.mealName
                         meal.calories = mealData.calories
@@ -171,7 +159,6 @@ class CoreDataUtilities {
                         mealkit.addToMeals(meal)
                         meals.append(meal)
                         return meal
-//                    }
                 })
                 
 

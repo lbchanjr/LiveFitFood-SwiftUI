@@ -27,8 +27,6 @@ struct CheckoutView: View {
     @State var couponValue = Int64(0)
     @State var selection: Int?
     
-    @State var usedCoupon: Coupon?
-    
     var body: some View {
         VStack {
             Form {
@@ -64,7 +62,7 @@ struct CheckoutView: View {
                         Text("Coupon discount")
                             .font(.title3)
                         Spacer()
-                        Text(String(format: "\(checkoutViewModel.couponDiscount > 0 ? "-":"")$%.2f", checkoutViewModel.couponDiscount))   // TODO: Replace with computed discount
+                        Text(String(format: "\(checkoutViewModel.couponDiscount > 0 ? "-":"")$%.2f", checkoutViewModel.couponDiscount))
                     }
                     HStack {
                         Text("Tip amount")
@@ -94,7 +92,7 @@ struct CheckoutView: View {
                         Text("Total amount")
                             .font(.title3)
                         Spacer()
-                        Text(String(format: "$%.2f", 123.45))
+                        Text(String(format: "$%.2f", checkoutViewModel.total))
                     }
                 }
                 
@@ -115,9 +113,7 @@ struct CheckoutView: View {
                             //Text("None").tag(CouponDiscount.none)
                         Text("None").tag(Int64(0))
                             ForEach(checkoutViewModel.coupons) {coupon in
-                            
-                                
-                                Text("\(coupon.code) (\(coupon.discount * 100)%)")
+                                Text("\(abs(coupon.code)) (\(coupon.discount * 100)%)")
                                     //.tag(CouponDiscount(rawValue: coupon.discount))
                                     .tag(coupon.code)
                             }
@@ -130,10 +126,10 @@ struct CheckoutView: View {
                             _ = checkoutViewModel.updateCouponDiscountAmount(discount: coupon.discount)
                             
                             // This will later be used to mark coupon as used
-                            self.usedCoupon = coupon
+                            checkoutViewModel.appliedCoupon = coupon
                             
                         } else {
-                            self.usedCoupon = nil
+                            checkoutViewModel.appliedCoupon = nil
                         }
                     }
                     //}
@@ -146,6 +142,9 @@ struct CheckoutView: View {
                 Button(action: {
                     print("Proceed clicked!")
                     selection = 1
+                    
+                    checkoutViewModel.processOrder()
+                    
                 }) {
                     Text("Proceed")
                         .frame(width: UIScreen.main.bounds.width * 0.65)

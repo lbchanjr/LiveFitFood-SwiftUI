@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 protocol CheckoutViewModelDelegate {
     func processOrder() -> Void
@@ -21,19 +22,39 @@ class CheckoutViewModel: ObservableObject {
     @Published var coupons: [Coupon]
     var email: String
     @Published var mealkit: Mealkit
-    @Published var tipAmount = 0.00
+    @Published var tipAmount: Double
     @Published var tax: Double
-    @Published var couponDiscount = 0.00
+    @Published var couponDiscount: Double
+    var appliedCoupon: Coupon?
+    @Published var total: Double
+    
+    private var disposables = Set<AnyCancellable>()
     
     init(email: String, mealkit: Mealkit) {
         self.email = email
         self.mealkit = mealkit
-        self.tax = mealkit.price * 0.13
+        tax = mealkit.price * 0.13
+        tipAmount = 0.00
+        couponDiscount = 0.00
+        coupons = (CoreDataUtilities.fetchUsers(with: email).first?.coupons?.allObjects as! [Coupon]).filter {!$0.isUsed}
+        total = 0
         
-        coupons = (CoreDataUtilities.fetchUsers(with: self.email).first?.coupons?.allObjects as! [Coupon]).filter {!$0.isUsed}
+        calculateTotal()
+        
+        $tipAmount
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: {[weak self] _ in self?.calculateTotal()})
+            .store(in: &disposables)
+        
+        $couponDiscount
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: {[weak self] _ in self?.calculateTotal()})
+            .store(in: &disposables)
     }
     
-    
+    private func calculateTotal() {
+        total = mealkit.price + tax - couponDiscount + tipAmount
+    }
 }
 
 extension CheckoutViewModel: CheckoutViewModelDelegate {
@@ -49,6 +70,7 @@ extension CheckoutViewModel: CheckoutViewModelDelegate {
     
     func processOrder() {
         
+        CoreDataUtilities.addOrderToDatabase(email: email, tip: tipAmount, total: total, appliedCoupon: appliedCoupon, item: mealkit)
     }
 }
 
