@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct OrderSummaryView: View {
-   
+    @Binding var isActive: Bool
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var body: some View {
         VStack {
             Text("Hello World!")
             Button("Back", action: {
                 
-                presentationMode.wrappedValue.dismiss()
+                //presentationMode.wrappedValue.dismiss()
+                //print("isActive = \(isActive)")
+                isActive = false
+                //print("isActive = \(isActive)")
                 
             })
         }
@@ -25,6 +28,6 @@ struct OrderSummaryView: View {
 
 struct OrderSummaryView_Previews: PreviewProvider {
     static var previews: some View {
-        OrderSummaryView()
+        OrderSummaryView(isActive: .constant(true))
     }
 }

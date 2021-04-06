@@ -12,6 +12,8 @@ struct WelcomeScreenView: View {
     @EnvironmentObject var userStatus: UserStatus
     var welcomeScreenViewModel: WelcomeScreenViewModel
     
+    @State var isActive: [Bool] =  Array<Bool>(repeating: false, count: 4)
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -47,26 +49,26 @@ struct WelcomeScreenView: View {
                     .font(.title)
                 
                 
-                List(welcomeScreenViewModel.mealkits) { mealkit in
+                List(0..<welcomeScreenViewModel.mealkits.count) { i in
                     NavigationLink(
-                        destination: MealkitDetailsView(/*mealkit: mealkit*/)
-                            .environmentObject(mealkit)
+                        destination: MealkitDetailsView(isActive: $isActive[i]/*mealkit: mealkit*/)
+                            .environmentObject(welcomeScreenViewModel.mealkits[i]), isActive: $isActive[i]
                     ) {
                         HStack {
-                            Image(mealkit.photo ?? "noimage")
+                            Image(welcomeScreenViewModel.mealkits[i].photo ?? "noimage")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: UIScreen.main.bounds.width * 0.3, height: UIScreen.main.bounds.width * 0.3)
                             VStack(alignment: .leading) {
-                                Text(mealkit.name ?? "")
+                                Text(welcomeScreenViewModel.mealkits[i].name ?? "")
                                     .font(.title2)
                                     .bold()
                                 Spacer()
-                                Text(mealkit.desc ?? "")
+                                Text(welcomeScreenViewModel.mealkits[i].desc ?? "")
                                     .font(.subheadline)
                                     .minimumScaleFactor(0.7)
                                 Spacer()
-                                Text(String(format: "CA$%.2f", mealkit.price))
+                                Text(String(format: "CA$%.2f", welcomeScreenViewModel.mealkits[i].price))
                                     .font(.title3)
                                     .fontWeight(.medium)
                             }

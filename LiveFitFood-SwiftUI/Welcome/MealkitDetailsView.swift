@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct MealkitDetailsView: View {
-    
+    @Binding var isActive: Bool
     @EnvironmentObject var mealkit: Mealkit
     @EnvironmentObject var loggedUser: LoggedInUser
     
@@ -39,7 +39,7 @@ struct MealkitDetailsView: View {
                 }
             }.padding(.bottom, 10)
             
-            NavigationLink(destination: CheckoutView(checkoutViewModel: CheckoutViewModel(email: loggedUser.email, mealkit: mealkit))
+            NavigationLink(destination: CheckoutView(isActive: $isActive, checkoutViewModel: CheckoutViewModel(email: loggedUser.email, mealkit: mealkit))
                 //            .environmentObject(mealkit)
             ) {
                 Text("Checkout")
@@ -57,7 +57,7 @@ struct MealkitDetailsView: View {
 
 struct MealkitDetailsView_Previews: PreviewProvider {
     static var previews: some View {        
-        MealkitDetailsView(/*mealkit: MealkitMockData().getMealkit()*/)
+        MealkitDetailsView(isActive: .constant(true)/*mealkit: MealkitMockData().getMealkit()*/)
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             .environmentObject(MealkitMockData().getMealkit())
     }

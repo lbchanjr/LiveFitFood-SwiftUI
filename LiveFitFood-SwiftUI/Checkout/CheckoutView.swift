@@ -14,6 +14,7 @@ enum CouponDiscount: Double {
 }
 
 struct CheckoutView: View {
+    @Binding var isActive: Bool
     //@EnvironmentObject var mealkit: Mealkit
     //@EnvironmentObject var loggedUser: LoggedInUser
     //@Environment(\.presentationMode) var presentationMode: Binding
@@ -127,7 +128,7 @@ struct CheckoutView: View {
             }
             .navigationBarTitle("Order Review")
 
-            NavigationLink(destination: OrderSummaryView(), tag: 1, selection: $selection) {
+            NavigationLink(destination: OrderSummaryView(isActive: $isActive), tag: 1, selection: $selection) {
                 Button("Proceed", action: {
                     print("Proceed clicked!")
                     selection = 1
@@ -161,7 +162,7 @@ struct CheckoutView: View {
 
 struct CheckoutView_Previews: PreviewProvider {
     static var previews: some View {
-        CheckoutView(checkoutViewModel: CheckoutViewModel(email: "test@gmail.com", mealkit: MealkitMockData().getMealkit()))
+        CheckoutView(isActive: .constant(true), checkoutViewModel: CheckoutViewModel(email: "test@gmail.com", mealkit: MealkitMockData().getMealkit()))
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             //.environmentObject(LoggedInUser(email: "test@gmail.com", phone: "12345", image: UIImage(named: "noimage")))
             //.environmentObject(MealkitMockData().getMealkit())
