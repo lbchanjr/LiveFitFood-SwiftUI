@@ -41,14 +41,16 @@ struct LoginScreenView: View {
             if !registerUser {
                 HStack {
                     Spacer()
-                    Button("Sign-in / Sign-up") {
+                    Button(action: {
                         signInButtonPressed()
+                    }) {
+                        Text("Sign-in / Sign-up")
+                            .font(.title2)
+                            .padding(.all)
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
                     }
-                    .font(.title2)
-                    .padding(.all)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
                     .opacity(loginViewModel.validEmail ? 1.0: 0.5)
                     .fullScreenCover(isPresented: $userStatus.isLoggedIn) {
 //                        Button("Logout") {

@@ -129,32 +129,19 @@ struct CheckoutView: View {
             .navigationBarTitle("Order Review")
 
             NavigationLink(destination: OrderSummaryView(isActive: $isActive), tag: 1, selection: $selection) {
-                Button("Proceed", action: {
+                
+                Button(action: {
                     print("Proceed clicked!")
                     selection = 1
-                })
-                .frame(width: UIScreen.main.bounds.width * 0.65)
-                .padding(.vertical)
-                .background(Color.blue)
-                .foregroundColor(.white)
+                }) {
+                    Text("Proceed")
+                        .frame(width: UIScreen.main.bounds.width * 0.65)
+                        .padding(.vertical)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                }
                 .cornerRadius(10)
             }
-//            .onAppear(perform: {self.selection = nil})
-//            {
-//                if(self.presentationMode.wrappedValue.isPresented == false) {
-//                    print("You click the back button")
-//                }
-//            }
-            
-//            NavigationLink(destination: OrderSummaryView()) {
-//                Text("Proceed")
-//                    .frame(width: UIScreen.main.bounds.width * 0.65)
-//                    .padding(.vertical)
-//                    .background(Color.blue)
-//                    .foregroundColor(.white)
-//                    .cornerRadius(10)
-//                    .font(.title3)
-//            }
         }
         
     }

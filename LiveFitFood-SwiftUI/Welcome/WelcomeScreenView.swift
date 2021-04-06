@@ -31,13 +31,15 @@ struct WelcomeScreenView: View {
                             .font(.title3)
                             .lineLimit(1)
                             .minimumScaleFactor(0.7)
-                        Button("Logout", action: {userStatus.isLoggedIn.toggle()})
-                            .font(.title3)
-                            .frame(maxWidth: .infinity)
-                            .padding(.all, 5)
-                            .background(Color.blue)
-                            .foregroundColor(Color.white)
-                            .cornerRadius(8)
+                        Button(action: {userStatus.isLoggedIn.toggle()}) {
+                            Text("Logout")
+                                .font(.title3)
+                                .frame(maxWidth: .infinity)
+                                .padding(.all, 5)
+                                .background(Color.blue)
+                                .foregroundColor(Color.white)
+                                .cornerRadius(8)
+                        }
                         
                     }.padding(.leading, 10)
                 }

@@ -46,19 +46,21 @@ struct RegistrationScreenView: View {
                     
                 Spacer()
                 VStack {
-                    Button("Use Camera", action: {
+                    Button(action: {
                         let camPermission = UIApplication.getCameraPermission()
                         if camPermission == AVAuthorizationStatus.authorized {
                             showCameraImagePicker.toggle()
                         } else if camPermission == AVAuthorizationStatus.denied {
                             cameraNotAllowedAlert.toggle()
                         }
-                    })
-                        .padding(.all, 10)
-                        .frame(width: UIScreen.main.bounds.size.width * 0.4)
-                        .background(Color.gray)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                    }) {
+                        Text("Use Camera")
+                            .padding(.all, 10)
+                            .frame(width: UIScreen.main.bounds.size.width * 0.4)
+                            .background(Color.gray)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
                         .disabled(!UIImagePickerController.isSourceTypeAvailable(.camera))
                         .opacity(UIImagePickerController.isSourceTypeAvailable(.camera) ? 1: 0.5)
                         .fullScreenCover(isPresented: $showCameraImagePicker, content: {
@@ -67,12 +69,14 @@ struct RegistrationScreenView: View {
                         .alert(isPresented: $cameraNotAllowedAlert, content: {
                             Alert(title: Text("Camera permission is disabled"), message: Text("Go to application settings and enable Camera permission"), primaryButton: .default(Text("Go to settings"), action: {UIApplication.goToAppSettings()}), secondaryButton: .default(Text("No thanks")))
                         })
-                    Button("Choose Photo", action: {showPhotoLibraryImagePicker.toggle()})
-                        .padding(.all, 10)
-                        .frame(width: UIScreen.main.bounds.size.width * 0.4)
-                        .background(Color.gray)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                    Button(action: {showPhotoLibraryImagePicker.toggle()}) {
+                        Text("Choose Photo")
+                            .padding(.all, 10)
+                            .frame(width: UIScreen.main.bounds.size.width * 0.4)
+                            .background(Color.gray)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
                         .disabled(!UIImagePickerController.isSourceTypeAvailable(.photoLibrary))
                         .opacity(UIImagePickerController.isSourceTypeAvailable(.photoLibrary) ? 1: 0.5)
                         .fullScreenCover(isPresented: $showPhotoLibraryImagePicker, content: {
@@ -84,31 +88,36 @@ struct RegistrationScreenView: View {
             }
             HStack {
                 Spacer()
-                Button("Register and Sign-in") {
+                Button(action: {
                     loginViewModel.registerUser()
                     registerUser.toggle()
                     userStatus.isLoggedIn.toggle()
+                }) {
+                    Text("Register and Sign-in")
+                        .padding(.all, 10)
+                        .frame(width: UIScreen.main.bounds.size.width * 0.5)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+
                 }
-                    .padding(.all, 10)
-                    .frame(width: UIScreen.main.bounds.size.width * 0.5)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
                     .opacity(loginViewModel.allowRegister ? 1: 0.5)
                     .disabled(!loginViewModel.allowRegister)
                     
                 Spacer()
                 
-                Button("Cancel", action: {
+                Button(action: {
                     registerUser.toggle()
                     loginViewModel.resetRegistrationData()
                     loginViewModel.message = ""
-                })
-                    .padding(.all, 10)
-                    .frame(width: UIScreen.main.bounds.size.width * 0.3)
-                    .background(Color.red)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+                }) {
+                    Text("Cancel")
+                        .padding(.all, 10)
+                        .frame(width: UIScreen.main.bounds.size.width * 0.3)
+                        .background(Color.red)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
                 Spacer()
             }.padding(.horizontal)
         }
