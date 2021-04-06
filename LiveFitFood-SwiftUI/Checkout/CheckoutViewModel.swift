@@ -31,11 +31,6 @@ class CheckoutViewModel: ObservableObject {
         self.tax = mealkit.price * 0.13
         
         coupons = (CoreDataUtilities.fetchUsers(with: self.email).first?.coupons?.allObjects as! [Coupon]).filter {!$0.isUsed}
-        
-//        print("Unused coupon count: \(coupons.count)")
-//        for c in coupons {
-//            print("Code: \(c.code), Discount: \(c.discount), isUsed: \(c.isUsed)")
-//        }
     }
     
     

@@ -23,8 +23,11 @@ struct CheckoutView: View {
     
     @State var tipAmountString = "0.00"
     @State var tipPercent = 0
-    @State var couponValue = CouponDiscount.none
+    //@State var couponValue = CouponDiscount.none
+    @State var couponValue = Int64(0)
     @State var selection: Int?
+    
+    @State var usedCoupon: Coupon?
     
     var body: some View {
         VStack {
@@ -109,19 +112,29 @@ struct CheckoutView: View {
                     
                     //HStack {
                     Picker(selection: $couponValue, label: Text("Selected coupon")) {
-                            Text("None").tag(CouponDiscount.none)
+                            //Text("None").tag(CouponDiscount.none)
+                        Text("None").tag(Int64(0))
                             ForEach(checkoutViewModel.coupons) {coupon in
                             
                                 
-                                Text("\(coupon.code) (\(coupon.discount * 100)%)").tag(CouponDiscount(rawValue: coupon.discount))
-                                
-                                
+                                Text("\(coupon.code) (\(coupon.discount * 100)%)")
+                                    //.tag(CouponDiscount(rawValue: coupon.discount))
+                                    .tag(coupon.code)
                             }
                             //Text("10% discount").tag(CouponDiscount.tenPercent)
                     }
                     .pickerStyle(DefaultPickerStyle())
                     .onChange(of: couponValue) {_ in
-                        _ = checkoutViewModel.updateCouponDiscountAmount(discount: couponValue.rawValue)
+                        // Decouple in view model?
+                        if let coupon = checkoutViewModel.coupons.first(where: {($0 as Coupon).code == couponValue}) {
+                            _ = checkoutViewModel.updateCouponDiscountAmount(discount: coupon.discount)
+                            
+                            // This will later be used to mark coupon as used
+                            self.usedCoupon = coupon
+                            
+                        } else {
+                            self.usedCoupon = nil
+                        }
                     }
                     //}
                 }
