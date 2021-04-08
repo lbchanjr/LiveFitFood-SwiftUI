@@ -45,7 +45,7 @@ class LoginViewModel: ObservableObject {
     
     var isPasswordEmpty: AnyPublisher<Bool, Never> {
         $password
-            .dropFirst()
+            .drop(while: {$0.isEmpty})
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .map {$0.isEmpty}
             .eraseToAnyPublisher()
@@ -71,7 +71,8 @@ class LoginViewModel: ObservableObject {
             .store(in: &disposables)
         
         $password
-            .dropFirst()
+            .drop(while: {$0.isEmpty})
+            //.dropFirst()
             .debounce(for: 0.8, scheduler: RunLoop.main)
             .sink {userSettings.password = $0}
             .store(in: &disposables)

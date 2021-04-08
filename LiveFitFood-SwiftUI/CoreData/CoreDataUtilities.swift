@@ -104,7 +104,9 @@ class CoreDataUtilities {
         user.email = email
         user.password = password
         user.phone = phone
-        user.photo = photo.pngData()
+        // MARK: Changed format to jpg since png does not support the rotate bit and will make the photo display sideways if it is directly saved to the database
+        //user.photo = photo.pngData()
+        user.photo = photo.jpegData(compressionQuality: 0)
         
         // save data to database
         do {
@@ -115,14 +117,9 @@ class CoreDataUtilities {
     }
         
     static func addOrderToDatabase(order: Order, appliedCoupon: Coupon?) {
-//        let order = Order(context: viewContext)
         order.datetime = Date()
         order.number = Int64(order.datetime!.hashValue)
-//        order.buyer = fetchUsers(with: email).first
         order.discount = appliedCoupon
-//        order.item = item
-//        order.tip = tip
-//        order.total = total
         
         if appliedCoupon != nil {
             appliedCoupon?.appliedTo = order
@@ -137,25 +134,12 @@ class CoreDataUtilities {
             print("Error saving order!")
             print(error.localizedDescription)
         }
-        
-//        return order
     }
     
     static func createOrder(email: String, mealkit: Mealkit) -> Order {
         let order = Order(context: viewContext)
         order.buyer = fetchUsers(with: email).first
         order.item = mealkit
-//        order.datetime = Date()
-//        order.number = Int64(order.datetime!.hashValue)
-//        order.discount = appliedCoupon
-//        order.tip = tip
-//        order.total = total
-
-//        if appliedCoupon != nil {
-//            appliedCoupon?.appliedTo = order
-//            appliedCoupon?.isUsed = true
-//        }
-
         return order
     }
     
