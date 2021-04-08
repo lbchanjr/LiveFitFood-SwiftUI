@@ -29,12 +29,16 @@ class CheckoutViewModel: ObservableObject {
     @Published var total: Double
     @Published var order: Order
     
+    static let decimalHandler = NSDecimalNumberHandler(roundingMode: .up, scale: 2, raiseOnExactness: true, raiseOnOverflow: true, raiseOnUnderflow: true, raiseOnDivideByZero: true)
+    
     private var disposables = Set<AnyCancellable>()
     
     init(email: String, mealkit: Mealkit) {
         self.email = email
         self.mealkit = mealkit
-        tax = mealkit.price * 0.13
+        
+        tax = NSDecimalNumber(value: mealkit.price).multiplying(by: NSDecimalNumber(value: 0.13)).rounding(accordingToBehavior: CheckoutViewModel.decimalHandler).doubleValue
+        
         tipAmount = 0.00
         couponDiscount = 0.00
         coupons = (CoreDataUtilities.fetchUsers(with: email).first?.coupons?.allObjects as! [Coupon]).filter {!$0.isUsed}
@@ -77,12 +81,12 @@ class CheckoutViewModel: ObservableObject {
 
 extension CheckoutViewModel: CheckoutViewModelDelegate {
     func updateTipAmount(tipPercentage: Double) -> Double {
-        tipAmount = mealkit.price * tipPercentage
+        tipAmount = NSDecimalNumber(value: mealkit.price).multiplying(by: NSDecimalNumber(value: tipPercentage)).rounding(accordingToBehavior: CheckoutViewModel.decimalHandler).doubleValue
         return tipAmount
     }
     
     func updateCouponDiscountAmount(discount: Double) -> Double {
-        couponDiscount = mealkit.price * discount
+        couponDiscount = NSDecimalNumber(value: mealkit.price).multiplying(by: NSDecimalNumber(value: discount)).rounding(accordingToBehavior: CheckoutViewModel.decimalHandler).doubleValue
         return couponDiscount
     }
     

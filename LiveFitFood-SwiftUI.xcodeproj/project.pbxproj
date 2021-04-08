@@ -38,6 +38,7 @@
 		87A53D38261AAA9700A22925 /* OrderSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A53D37261AAA9700A22925 /* OrderSummaryView.swift */; };
 		87A53D67261D3B5100A22925 /* OrderHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A53D66261D3B5100A22925 /* OrderHistoryView.swift */; };
 		87A53D6A261D4EC600A22925 /* ShakeCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A53D69261D4EC600A22925 /* ShakeCounter.swift */; };
+		87A53D76261EAD7400A22925 /* OrderSummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A53D75261EAD7400A22925 /* OrderSummaryViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		87A53D37261AAA9700A22925 /* OrderSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryView.swift; sourceTree = "<group>"; };
 		87A53D66261D3B5100A22925 /* OrderHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryView.swift; sourceTree = "<group>"; };
 		87A53D69261D4EC600A22925 /* ShakeCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeCounter.swift; sourceTree = "<group>"; };
+		87A53D75261EAD7400A22925 /* OrderSummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +212,7 @@
 				87A53D37261AAA9700A22925 /* OrderSummaryView.swift */,
 				87A53D66261D3B5100A22925 /* OrderHistoryView.swift */,
 				87A53D69261D4EC600A22925 /* ShakeCounter.swift */,
+				87A53D75261EAD7400A22925 /* OrderSummaryViewModel.swift */,
 			);
 			path = OrderSummary;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				8770D7812602863500C60605 /* LiveFitFood_SwiftUIApp.swift in Sources */,
 				874429AE26115B6F0029107F /* UserSettings.swift in Sources */,
 				87A53D6A261D4EC600A22925 /* ShakeCounter.swift in Sources */,
+				87A53D76261EAD7400A22925 /* OrderSummaryViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

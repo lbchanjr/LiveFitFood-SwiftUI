@@ -115,7 +115,7 @@ struct CheckoutView: View {
                             //Text("None").tag(CouponDiscount.none)
                         Text("None").tag(Int64(0))
                             ForEach(checkoutViewModel.coupons) {coupon in
-                                Text("\(abs(coupon.code)) (\(coupon.discount * 100)%)")
+                                Text("\(String(format: "%010u", abs(coupon.code))) (\(String(format: "%.0f", coupon.discount * 100))%)")
                                     //.tag(CouponDiscount(rawValue: coupon.discount))
                                     .tag(coupon.code)
                             }
@@ -139,7 +139,7 @@ struct CheckoutView: View {
             }
             .navigationBarTitle("Order Review")
 
-            NavigationLink(destination: OrderSummaryView(/*shakeCounter: ShakeCounter(count: 3),*/ order: checkoutViewModel.order, isActive: $isActive), tag: 1, selection: $selection) {
+            NavigationLink(destination: OrderSummaryView(viewModel: OrderSummaryViewModel(email: checkoutViewModel.email), order: checkoutViewModel.order, isActive: $isActive), tag: 1, selection: $selection) {
 
                 Button(action: {
                     print("Proceed clicked!")

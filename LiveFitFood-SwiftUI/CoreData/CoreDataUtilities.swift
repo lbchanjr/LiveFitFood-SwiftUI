@@ -69,7 +69,7 @@ class CoreDataUtilities {
         let requestCoupons: NSFetchRequest<Coupon> = Coupon.fetchRequest()
         
         do {
-            // store meals in array
+            // fetch all coupons in database
             coupons = try viewContext.fetch(requestCoupons)
         } catch {
             print("Error reading coupons from database")
@@ -78,6 +78,26 @@ class CoreDataUtilities {
         
         return coupons
     }
+    
+    static func fetchCoupons(on date: String, for user: User) -> [Coupon] {
+        var coupons: [Coupon] = []
+        let request : NSFetchRequest<Coupon> = Coupon.fetchRequest()
+        
+        // Query for coupons that were generated on specified date for the logged user
+        let query = NSPredicate(format: "dateGenerated == %@ AND owner == %@", date, user)
+        request.predicate = query
+        
+        do {
+            // fetch coupons with today's date for the specified user
+            coupons = try viewContext.fetch(request)
+        } catch {
+            print("Error reading from database")
+            fatalError(error.localizedDescription)
+        }
+        
+        return coupons
+    }
+
     
     static func addUserToDatabase(email: String, password: String, phone: String, photo: UIImage ) {
         let user = User(context: viewContext)
@@ -137,6 +157,38 @@ class CoreDataUtilities {
 //        }
 
         return order
+    }
+    
+    static func generateCoupon(with discount: Int, for user: User) {
+        
+        // Exit if discount is 0 (i.e. no need to generate a coupon)
+        if discount == 0 {
+            return
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let dateToday = dateFormatter.string(from: Date())
+        
+        let newCoupon = Coupon(context: viewContext)
+        newCoupon.isUsed = false
+
+        newCoupon.dateGenerated = dateToday
+        newCoupon.discount = Double(discount)/100.0
+        
+        newCoupon.owner = user
+        newCoupon.appliedTo = nil
+        newCoupon.code = Int64(dateToday.hashValue)
+        
+        //print("Coupon code: \(String(format: "%010u", abs(newCoupon.code))), Discount: \(discount)%")
+        do {
+            try viewContext.save()
+        } catch {
+            print("Error saving coupon!")
+            fatalError(error.localizedDescription)
+        }
+        
     }
 
     static func loadJSONDataToSQLite() -> (mealkits: [Mealkit], meals: [Meal]) {
