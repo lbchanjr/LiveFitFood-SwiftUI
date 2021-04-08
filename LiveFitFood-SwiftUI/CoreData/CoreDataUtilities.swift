@@ -93,28 +93,50 @@ class CoreDataUtilities {
             print("Error adding user to database")
         }
     }
-    
-    static func addOrderToDatabase(email: String, tip: Double, total: Double, appliedCoupon: Coupon?, item: Mealkit) {
-        let order = Order(context: viewContext)
+        
+    static func addOrderToDatabase(order: Order, appliedCoupon: Coupon?) {
+//        let order = Order(context: viewContext)
         order.datetime = Date()
         order.number = Int64(order.datetime!.hashValue)
-        order.buyer = fetchUsers(with: email).first
+//        order.buyer = fetchUsers(with: email).first
         order.discount = appliedCoupon
-        order.item = item
-        order.tip = tip
-        order.total = total
+//        order.item = item
+//        order.tip = tip
+//        order.total = total
         
         if appliedCoupon != nil {
             appliedCoupon?.appliedTo = order
             appliedCoupon?.isUsed = true
+            print("Coupon \(abs(appliedCoupon!.code)) applied to order")
         }
         
         do {
             try viewContext.save()
+            print("Order saved to database")
         } catch {
             print("Error saving order!")
             print(error.localizedDescription)
         }
+        
+//        return order
+    }
+    
+    static func createOrder(email: String, mealkit: Mealkit) -> Order {
+        let order = Order(context: viewContext)
+        order.buyer = fetchUsers(with: email).first
+        order.item = mealkit
+//        order.datetime = Date()
+//        order.number = Int64(order.datetime!.hashValue)
+//        order.discount = appliedCoupon
+//        order.tip = tip
+//        order.total = total
+
+//        if appliedCoupon != nil {
+//            appliedCoupon?.appliedTo = order
+//            appliedCoupon?.isUsed = true
+//        }
+
+        return order
     }
 
     static func loadJSONDataToSQLite() -> (mealkits: [Mealkit], meals: [Meal]) {

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct WelcomeScreenView: View {
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @EnvironmentObject var user: LoggedInUser
     @EnvironmentObject var userStatus: UserStatus
     var welcomeScreenViewModel: WelcomeScreenViewModel
@@ -16,7 +17,7 @@ struct WelcomeScreenView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(alignment: .leading) {
                 HStack {
                     Image(uiImage: user.image ?? UIImage(named: "noimage")!)
                         .resizable()
@@ -43,14 +44,15 @@ struct WelcomeScreenView: View {
                         
                     }.padding(.leading, 10)
                 }
-                .padding(.horizontal)
-                .padding(.top)
+                .padding([.horizontal, .top])
+                //.padding(.top)
                 
                 Text("Choose a Meal Kit")
                     .bold()
                     .font(.title)
+                    .padding(.leading)
                 
-                
+//                NavigationView {
                 List(0..<welcomeScreenViewModel.mealkits.count) { i in
                     NavigationLink(
                         destination: MealkitDetailsView(isActive: $isActive[i]/*mealkit: mealkit*/)
@@ -60,7 +62,8 @@ struct WelcomeScreenView: View {
                             Image(welcomeScreenViewModel.mealkits[i].photo ?? "noimage")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: UIScreen.main.bounds.width * 0.3, height: UIScreen.main.bounds.width * 0.3)
+                                //.frame(width: UIScreen.main.bounds.width * 0.3, height: UIScreen.main.bounds.width * 0.3)
+                                .frame(width: 100, height: 100)
                             VStack(alignment: .leading) {
                                 Text(welcomeScreenViewModel.mealkits[i].name ?? "")
                                     .font(.title2)
@@ -79,7 +82,10 @@ struct WelcomeScreenView: View {
                     
                 }
                 .navigationBarHidden(true)
+                //.navigationBarTitle("Choose a Meal Kit")
             }
+            //.navigationViewStyle(DoubleColumnNavigationViewStyle())
+//                }
         }
     }
     

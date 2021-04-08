@@ -19,13 +19,15 @@ struct CheckoutView: View {
     //@EnvironmentObject var loggedUser: LoggedInUser
     //@Environment(\.presentationMode) var presentationMode: Binding
     
-    @ObservedObject var checkoutViewModel: CheckoutViewModel
+    @StateObject var checkoutViewModel: CheckoutViewModel
     
     @State var tipAmountString = "0.00"
     @State var tipPercent = 0
     //@State var couponValue = CouponDiscount.none
     @State var couponValue = Int64(0)
     @State var selection: Int?
+    //@State var proceedPressed = false
+    //@State var orderProcessed: OrderData?
     
     var body: some View {
         VStack {
@@ -137,23 +139,41 @@ struct CheckoutView: View {
             }
             .navigationBarTitle("Order Review")
 
-            NavigationLink(destination: OrderSummaryView(isActive: $isActive), tag: 1, selection: $selection) {
-                
+            NavigationLink(destination: OrderSummaryView(/*shakeCounter: ShakeCounter(count: 3),*/ order: checkoutViewModel.order, isActive: $isActive), tag: 1, selection: $selection) {
+
                 Button(action: {
                     print("Proceed clicked!")
-                    selection = 1
-                    
                     checkoutViewModel.processOrder()
-                    
+                    print("process order called")
+                    selection = 1
                 }) {
                     Text("Proceed")
                         .frame(width: UIScreen.main.bounds.width * 0.65)
                         .padding(.vertical)
                         .background(Color.blue)
                         .foregroundColor(.white)
+                        .cornerRadius(10)
                 }
-                .cornerRadius(10)
+
             }
+
+//            Button(action: {
+//                print("Proceed clicked!")
+//                orderProcessed = checkoutViewModel.processOrder()
+//                proceedPressed.toggle()
+//
+//            }) {
+//                Text("Proceed")
+//                    .frame(width: UIScreen.main.bounds.width * 0.65)
+//                    .padding(.vertical)
+//                    .background(Color.blue)
+//                    .foregroundColor(.white)
+//                    .cornerRadius(10)
+//            }
+//            .fullScreenCover(isPresented: $proceedPressed, content: {
+//                OrderSummaryView(shakeCounter: ShakeCounter(count: 3), order: self.orderProcessed!, isActive: $isActive)
+//            })
+
         }
         
     }
@@ -161,9 +181,9 @@ struct CheckoutView: View {
 
 struct CheckoutView_Previews: PreviewProvider {
     static var previews: some View {
-        CheckoutView(isActive: .constant(true), checkoutViewModel: CheckoutViewModel(email: "test@gmail.com", mealkit: MealkitMockData().getMealkit()))
+        CheckoutView(isActive: .constant(true), checkoutViewModel: CheckoutViewModel(email: "test@gmail.com", mealkit: MockData().getMealkit()))
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             //.environmentObject(LoggedInUser(email: "test@gmail.com", phone: "12345", image: UIImage(named: "noimage")))
-            //.environmentObject(MealkitMockData().getMealkit())
+            //.environmentObject(MockData().getMealkit())
     }
 }

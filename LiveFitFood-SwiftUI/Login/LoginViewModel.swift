@@ -97,6 +97,8 @@ class LoginViewModel: ObservableObject {
             .assign(to: \.allowRegister, on: self)
             .store(in: &disposables)
         
+        print("Login View Model allocated")
+        
     }
     
     private func isValidEmail(_ email: String) -> Bool {

@@ -7,11 +7,12 @@
 
 import Foundation
 
-class MealkitMockData {
+class MockData {
     static let viewContext = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] != "1" ? PersistenceController.shared.container.viewContext: PersistenceController.preview.container.viewContext
 
     let mealkitMockData = Mealkit(context: viewContext)
     let meal = Meal(context: viewContext)
+    let orderMockData = Order(context: viewContext)
     
     init() {
         mealkitMockData.name = "Live Fit Food"
@@ -26,11 +27,22 @@ class MealkitMockData {
             meal.calories = 100*Double(i)
             mealkitMockData.addToMeals(meal)
         }
+        
+        orderMockData.datetime = Date()
+        orderMockData.item = mealkitMockData
+        orderMockData.number = Int64(orderMockData.datetime?.hashValue ?? 0)
+        orderMockData.total = 123.45
+        orderMockData.tip = 12.35
     }
     
     func getMealkit() -> Mealkit {
         return mealkitMockData
     }
+    
+    func getOrder() -> Order {
+        return orderMockData
+    }
+
 }
 
 

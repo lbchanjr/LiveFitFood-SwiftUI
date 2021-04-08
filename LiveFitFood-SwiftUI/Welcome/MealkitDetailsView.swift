@@ -57,8 +57,8 @@ struct MealkitDetailsView: View {
 
 struct MealkitDetailsView_Previews: PreviewProvider {
     static var previews: some View {        
-        MealkitDetailsView(isActive: .constant(true)/*mealkit: MealkitMockData().getMealkit()*/)
+        MealkitDetailsView(isActive: .constant(true)/*mealkit: MockData().getMealkit()*/)
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-            .environmentObject(MealkitMockData().getMealkit())
+            .environmentObject(MockData().getMealkit())
     }
 }

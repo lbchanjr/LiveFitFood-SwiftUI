@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol CheckoutViewModelDelegate {
-    func processOrder() -> Void
+    func processOrder()
     
     func updateTipAmount(tipPercentage: Double) -> Double
     
@@ -27,6 +27,7 @@ class CheckoutViewModel: ObservableObject {
     @Published var couponDiscount: Double
     var appliedCoupon: Coupon?
     @Published var total: Double
+    @Published var order: Order
     
     private var disposables = Set<AnyCancellable>()
     
@@ -38,22 +39,39 @@ class CheckoutViewModel: ObservableObject {
         couponDiscount = 0.00
         coupons = (CoreDataUtilities.fetchUsers(with: email).first?.coupons?.allObjects as! [Coupon]).filter {!$0.isUsed}
         total = 0
+        order = CoreDataUtilities.createOrder(email: email, mealkit: mealkit)
+       
+//        order.datetime = Date()
+//        order.number = Int64(order.datetime!.hashValue)
+//        order.discount = appliedCoupon
+//        if appliedCoupon != nil {
+//            appliedCoupon?.appliedTo = order
+//            appliedCoupon?.isUsed = true
+//        }
         
         calculateTotal()
         
         $tipAmount
             .receive(on: RunLoop.main)
-            .sink(receiveValue: {[weak self] _ in self?.calculateTotal()})
+            .sink(receiveValue: {[weak self] tip in
+                self?.calculateTotal()
+                self?.order.tip = tip
+            })
             .store(in: &disposables)
         
         $couponDiscount
             .receive(on: RunLoop.main)
-            .sink(receiveValue: {[weak self] _ in self?.calculateTotal()})
+            .sink(receiveValue: {[weak self] _ in
+                self?.calculateTotal()
+            })
             .store(in: &disposables)
+        
+        print("Checkout view model allocated")
     }
     
     private func calculateTotal() {
         total = mealkit.price + tax - couponDiscount + tipAmount
+        order.total = total
     }
 }
 
@@ -69,8 +87,8 @@ extension CheckoutViewModel: CheckoutViewModelDelegate {
     }
     
     func processOrder() {
-        
-        CoreDataUtilities.addOrderToDatabase(email: email, tip: tipAmount, total: total, appliedCoupon: appliedCoupon, item: mealkit)
+//        return CoreDataUtilities.createOrder(email: email, tip: tipAmount, total: total, appliedCoupon: appliedCoupon, item: mealkit)
+        CoreDataUtilities.addOrderToDatabase(order: order, appliedCoupon: appliedCoupon)
     }
 }
 

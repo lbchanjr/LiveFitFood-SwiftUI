@@ -36,6 +36,8 @@
 		8770D7B02607940500C60605 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7AF2607940400C60605 /* HeaderView.swift */; };
 		8770D7B52607E20300C60605 /* RegistrationScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7B42607E20200C60605 /* RegistrationScreenView.swift */; };
 		87A53D38261AAA9700A22925 /* OrderSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A53D37261AAA9700A22925 /* OrderSummaryView.swift */; };
+		87A53D67261D3B5100A22925 /* OrderHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A53D66261D3B5100A22925 /* OrderHistoryView.swift */; };
+		87A53D6A261D4EC600A22925 /* ShakeCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A53D69261D4EC600A22925 /* ShakeCounter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +72,8 @@
 		8770D7AF2607940400C60605 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		8770D7B42607E20200C60605 /* RegistrationScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationScreenView.swift; sourceTree = "<group>"; };
 		87A53D37261AAA9700A22925 /* OrderSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryView.swift; sourceTree = "<group>"; };
+		87A53D66261D3B5100A22925 /* OrderHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryView.swift; sourceTree = "<group>"; };
+		87A53D69261D4EC600A22925 /* ShakeCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeCounter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +145,11 @@
 		8770D77F2602863500C60605 /* LiveFitFood-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				8770D7802602863500C60605 /* LiveFitFood_SwiftUIApp.swift */,
+				8770D7822602863500C60605 /* ContentView.swift */,
+				8770D7892602863900C60605 /* Persistence.swift */,
+				8770D78E2602863900C60605 /* Info.plist */,
+				8770D78B2602863900C60605 /* LiveFitFood_SwiftUI.xcdatamodeld */,
 				87A53D36261AAA6600A22925 /* OrderSummary */,
 				870F536B2616996F00AF9937 /* Checkout */,
 				874429B62613B38A0029107F /* Models */,
@@ -149,12 +158,7 @@
 				8770D7A42605988700C60605 /* CoreData */,
 				8770D7B32607E1B200C60605 /* Registration */,
 				8770D7962603EF6200C60605 /* Login */,
-				8770D7802602863500C60605 /* LiveFitFood_SwiftUIApp.swift */,
-				8770D7822602863500C60605 /* ContentView.swift */,
 				8770D7842602863900C60605 /* Assets.xcassets */,
-				8770D7892602863900C60605 /* Persistence.swift */,
-				8770D78E2602863900C60605 /* Info.plist */,
-				8770D78B2602863900C60605 /* LiveFitFood_SwiftUI.xcdatamodeld */,
 				8770D7862602863900C60605 /* Preview Content */,
 			);
 			path = "LiveFitFood-SwiftUI";
@@ -204,6 +208,8 @@
 			isa = PBXGroup;
 			children = (
 				87A53D37261AAA9700A22925 /* OrderSummaryView.swift */,
+				87A53D66261D3B5100A22925 /* OrderHistoryView.swift */,
+				87A53D69261D4EC600A22925 /* ShakeCounter.swift */,
 			);
 			path = OrderSummary;
 			sourceTree = "<group>";
@@ -299,11 +305,13 @@
 				874429BB261401680029107F /* WelcomeScreenViewModel.swift in Sources */,
 				874429A5260D6DDE0029107F /* Extensions.swift in Sources */,
 				874429A1260C37AF0029107F /* ImagePickerView.swift in Sources */,
+				87A53D67261D3B5100A22925 /* OrderHistoryView.swift in Sources */,
 				87280F742614494C002491DA /* User+CoreDataClass.swift in Sources */,
 				874429C12614248B0029107F /* LiveFitFoodData.swift in Sources */,
 				87280F7B26154A4D002491DA /* MealkitDetailsView.swift in Sources */,
 				8770D7812602863500C60605 /* LiveFitFood_SwiftUIApp.swift in Sources */,
 				874429AE26115B6F0029107F /* UserSettings.swift in Sources */,
+				87A53D6A261D4EC600A22925 /* ShakeCounter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,5 +20,7 @@ class WelcomeScreenViewModel: ObservableObject {
             mealkits = liveFitFoodData.mealkits
             meals = liveFitFoodData.meals
         }
+        
+        print("Welcome screen allocated")
     }
 }
