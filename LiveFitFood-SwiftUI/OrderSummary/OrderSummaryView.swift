@@ -126,8 +126,8 @@ struct OrderSummaryView: View {
 
                 Section(header: Text("Order History")) {
                     List {
-                        NavigationLink(destination: OrderHistoryView()) {
-                            Text("View past orders")
+                        NavigationLink(destination: OrderHistoryView(orderHistoryViewModel: OrderHistoryViewModel(email: orderSummaryViewModel.email))) {
+                            Text("View previous orders")
                                 .fontWeight(.medium)
                         }
                     }

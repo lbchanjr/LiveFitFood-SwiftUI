@@ -190,6 +190,28 @@ class CoreDataUtilities {
         }
         
     }
+    
+    static func fetchOrders(of email: String) -> [Order] {
+        var orders: [Order] = []
+        let request : NSFetchRequest<Order> = Order.fetchRequest()
+        
+        guard let user = fetchUsers(with: email).first else {
+            return orders
+        }
+        
+        // Query for coupons that were generated on specified date
+        let query = NSPredicate(format: "buyer == %@", user)
+        request.predicate = query
+        
+        do {
+            orders = try viewContext.fetch(request)
+        } catch {
+            print("Error reading from database")
+            fatalError(error.localizedDescription)
+        }
+        
+        return orders
+    }
 
     static func loadJSONDataToSQLite() -> (mealkits: [Mealkit], meals: [Meal]) {
         var mealkits: [Mealkit] = []

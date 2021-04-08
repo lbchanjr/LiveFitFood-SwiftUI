@@ -39,6 +39,7 @@
 		87A53D67261D3B5100A22925 /* OrderHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A53D66261D3B5100A22925 /* OrderHistoryView.swift */; };
 		87A53D6A261D4EC600A22925 /* ShakeCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A53D69261D4EC600A22925 /* ShakeCounter.swift */; };
 		87A53D76261EAD7400A22925 /* OrderSummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A53D75261EAD7400A22925 /* OrderSummaryViewModel.swift */; };
+		87DF4747261EDD4400825B4C /* OrderHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DF4746261EDD4400825B4C /* OrderHistoryViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		87A53D66261D3B5100A22925 /* OrderHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryView.swift; sourceTree = "<group>"; };
 		87A53D69261D4EC600A22925 /* ShakeCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeCounter.swift; sourceTree = "<group>"; };
 		87A53D75261EAD7400A22925 /* OrderSummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSummaryViewModel.swift; sourceTree = "<group>"; };
+		87DF4746261EDD4400825B4C /* OrderHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +215,7 @@
 				87A53D66261D3B5100A22925 /* OrderHistoryView.swift */,
 				87A53D69261D4EC600A22925 /* ShakeCounter.swift */,
 				87A53D75261EAD7400A22925 /* OrderSummaryViewModel.swift */,
+				87DF4746261EDD4400825B4C /* OrderHistoryViewModel.swift */,
 			);
 			path = OrderSummary;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				870F537526189AD500AF9937 /* CheckoutViewModel.swift in Sources */,
 				8770D7A6260598AB00C60605 /* CoreDataUtilities.swift in Sources */,
 				8770D7A226051A0300C60605 /* LoginViewModel.swift in Sources */,
+				87DF4747261EDD4400825B4C /* OrderHistoryViewModel.swift in Sources */,
 				874429AB2610249E0029107F /* PasswordPromptView.swift in Sources */,
 				8770D7832602863500C60605 /* ContentView.swift in Sources */,
 				8770D7B02607940500C60605 /* HeaderView.swift in Sources */,

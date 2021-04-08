@@ -114,12 +114,11 @@ struct CheckoutView: View {
                     Picker(selection: $couponValue, label: Text("Selected coupon")) {
                             //Text("None").tag(CouponDiscount.none)
                         Text("None").tag(Int64(0))
-                            ForEach(checkoutViewModel.coupons) {coupon in
-                                Text("\(String(format: "%010u", abs(coupon.code))) (\(String(format: "%.0f", coupon.discount * 100))%)")
-                                    //.tag(CouponDiscount(rawValue: coupon.discount))
-                                    .tag(coupon.code)
-                            }
-                            //Text("10% discount").tag(CouponDiscount.tenPercent)
+                        ForEach(checkoutViewModel.coupons) {coupon in
+                            Text("\(String(format: "%010u", abs(coupon.code))) (\(String(format: "%.0f", coupon.discount * 100))%)")
+                                //.tag(CouponDiscount(rawValue: coupon.discount))
+                                .tag(coupon.code)
+                        }
                     }
                     .pickerStyle(DefaultPickerStyle())
                     .onChange(of: couponValue) {_ in

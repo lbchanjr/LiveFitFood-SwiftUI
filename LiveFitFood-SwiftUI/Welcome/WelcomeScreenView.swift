@@ -62,20 +62,19 @@ struct WelcomeScreenView: View {
                             Image(welcomeScreenViewModel.mealkits[i].photo ?? "noimage")
                                 .resizable()
                                 .scaledToFit()
-                                //.frame(width: UIScreen.main.bounds.width * 0.3, height: UIScreen.main.bounds.width * 0.3)
-                                .frame(width: 100, height: 100)
+                                .frame(width: UIScreen.main.bounds.width * 0.3, height: UIScreen.main.bounds.width * 0.3)
+                                //.frame(width: 100, height: 100)
                             VStack(alignment: .leading) {
                                 Text(welcomeScreenViewModel.mealkits[i].name ?? "")
                                     .font(.title2)
                                     .bold()
-                                Spacer()
                                 Text(welcomeScreenViewModel.mealkits[i].desc ?? "")
                                     .font(.subheadline)
                                     .minimumScaleFactor(0.7)
-                                Spacer()
                                 Text(String(format: "CA$%.2f", welcomeScreenViewModel.mealkits[i].price))
                                     .font(.title3)
                                     .fontWeight(.medium)
+                                    .padding(.top, 5)
                             }
                         }
                     }
