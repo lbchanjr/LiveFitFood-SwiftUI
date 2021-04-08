@@ -135,7 +135,6 @@ struct OrderSummaryView: View {
                 
             }
             .frame(height: UIScreen.main.bounds.height * 0.7)
-
             Spacer()
             Button(action: {isActive = false}) {
                 Text("Return to Welcome Screen")

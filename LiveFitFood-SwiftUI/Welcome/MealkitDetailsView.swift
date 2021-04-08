@@ -50,6 +50,7 @@ struct MealkitDetailsView: View {
                     .cornerRadius(10)
                     .font(.title3)
             }
+            .padding(.bottom, 5)
         }
         .navigationBarTitle(mealkit.name ?? "")
     }

@@ -38,12 +38,10 @@ struct RegistrationScreenView: View {
                 Spacer()
                 Image(uiImage: loginViewModel.image)
                     .resizable()
-                    .aspectRatio(1, contentMode: .fit)
                     .frame(minWidth: UIScreen.main.bounds.size.width * 0.25, maxWidth: UIScreen.main.bounds.size.width * 0.3)
-                    
+                    .scaledToFit()
                     .cornerRadius(10)
                     .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(.label)).aspectRatio(1, contentMode: .fit))
-                    
                 Spacer()
                 VStack {
                     Button(action: {
@@ -91,9 +89,9 @@ struct RegistrationScreenView: View {
                 Button(action: {
                     loginViewModel.registerUser()
                     registerUser.toggle()
-                    userStatus.isLoggedIn.toggle()
+                    //userStatus.isLoggedIn.toggle()
                 }) {
-                    Text("Register and Sign-in")
+                    Text("Register")
                         .padding(.all, 10)
                         .frame(width: UIScreen.main.bounds.size.width * 0.5)
                         .background(Color.blue)

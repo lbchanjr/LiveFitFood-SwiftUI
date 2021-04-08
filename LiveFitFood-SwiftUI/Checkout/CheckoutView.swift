@@ -81,10 +81,11 @@ struct CheckoutView: View {
                             }
                             
                         }
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .frame(width: UIScreen.main.bounds.width * 0.20)
-                            .multilineTextAlignment(.trailing)
-                            .keyboardType(.numberPad)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .frame(width: UIScreen.main.bounds.width * 0.20)
+                        .multilineTextAlignment(.trailing)
+                        //.keyboardType(.decimalPad)
+                        
                     }
                     
                 }
@@ -153,6 +154,7 @@ struct CheckoutView: View {
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }
+                .padding(.bottom, 5)
 
             }
 
@@ -173,6 +175,9 @@ struct CheckoutView: View {
 //                OrderSummaryView(shakeCounter: ShakeCounter(count: 3), order: self.orderProcessed!, isActive: $isActive)
 //            })
 
+        }
+        .onTapGesture {
+            self.hideKeyboard()
         }
         
     }
