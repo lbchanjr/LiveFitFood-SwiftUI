@@ -44,15 +44,7 @@ class CheckoutViewModel: ObservableObject {
         coupons = (CoreDataUtilities.fetchUsers(with: email).first?.coupons?.allObjects as! [Coupon]).filter {!$0.isUsed}
         total = 0
         order = CoreDataUtilities.createOrder(email: email, mealkit: mealkit)
-       
-//        order.datetime = Date()
-//        order.number = Int64(order.datetime!.hashValue)
-//        order.discount = appliedCoupon
-//        if appliedCoupon != nil {
-//            appliedCoupon?.appliedTo = order
-//            appliedCoupon?.isUsed = true
-//        }
-        
+               
         calculateTotal()
         
         $tipAmount
