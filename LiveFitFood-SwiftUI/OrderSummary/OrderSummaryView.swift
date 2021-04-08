@@ -16,9 +16,6 @@ struct OrderSummaryView: View {
     }()
     
     @StateObject var shakeCounter = ShakeCounter(count: 3)
-    
-//    @State var shakeCountdown = 3
-    
     @ObservedObject var order: Order
     
     @State var gameIsActive = false
@@ -68,15 +65,19 @@ struct OrderSummaryView: View {
                     
                     if gameIsActive {
                         VStack {
-                            Text("Shake phone 3 times to see if you can win coupon discounts!")
+                            Text("Shake phone 3 times to see if you can win coupon discounts")
                                 .font(.subheadline)
                                 .fontWeight(.medium)
                                 .foregroundColor(Color(.systemPink))
                                 .multilineTextAlignment(.center)
                                 .padding(.horizontal)
-                            Text(String(shakeCounter.shakeCountdown/*shakeCountdown*/))
-                                .font(.system(size: 100))
+                            Text(String(shakeCounter.shakeCountdown))
+                                .font(.system(size: 80))
                                 .foregroundColor(.accentColor)
+                                .multilineTextAlignment(.center)
+                            Text("tries left!")
+                                .font(.headline)
+                                .foregroundColor(Color(.label))
                                 .multilineTextAlignment(.center)
                         }
                         .onShake {
@@ -86,11 +87,6 @@ struct OrderSummaryView: View {
                                 shakeCounter.resetShakeCountdown()
                                 gameIsActive = false
                             }
-//                            shakeCountdown -= 1
-//                            if shakeCountdown == 0 {
-//                                gameIsActive = false
-//                                shakeCountdown = 3
-//                            }
                         }
                     }
                 }
