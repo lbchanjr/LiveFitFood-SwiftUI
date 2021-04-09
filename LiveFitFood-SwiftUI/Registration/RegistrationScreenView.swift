@@ -39,9 +39,9 @@ struct RegistrationScreenView: View {
                 Image(uiImage: loginViewModel.image)
                     .resizable()
                     .frame(minWidth: UIScreen.main.bounds.size.width * 0.25, maxWidth: UIScreen.main.bounds.size.width * 0.3)
-                    .scaledToFit()
-                    .cornerRadius(10)
-                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(.label)).aspectRatio(1, contentMode: .fit))
+                    .aspectRatio(1, contentMode: .fit)
+                    .overlay(Rectangle().stroke(Color(.placeholderText), lineWidth: 3).aspectRatio(1, contentMode: .fit))
+                    
                 Spacer()
                 VStack {
                     Button(action: {
