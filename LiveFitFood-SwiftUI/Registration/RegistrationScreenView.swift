@@ -12,9 +12,6 @@ struct RegistrationScreenView: View {
     @EnvironmentObject var loginViewModel: LoginViewModel
     @EnvironmentObject var userStatus: UserStatus
     @Binding var registerUser: Bool
-    @State var showCameraImagePicker = false
-    @State var showPhotoLibraryImagePicker = false
-    @State var cameraNotAllowedAlert = false
     var body: some View {
         VStack(alignment: .leading) {            
             PasswordPromptView(registerUser: $registerUser, textLabel: .constant("Confirm Password"), passwordPlaceholder: .constant("Re-enter password"), passwordInput: $loginViewModel.confirmPassword)
@@ -30,7 +27,35 @@ struct RegistrationScreenView: View {
                 .padding(.vertical, 5)
                 .minimumScaleFactor(0.8)
                 .background(Color(.secondarySystemBackground))
+            
+            RegistrationProfilePhotoView()
+            
+            RegistrationButtonsView(registerUser: $registerUser)
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            self.hideKeyboard()
+        }
 
+    }
+}
+
+struct RegistrationScreenView_Previews: PreviewProvider {
+    static var previews: some View {
+        RegistrationScreenView(registerUser: .constant(true))
+            .environmentObject(LoginViewModel(userSettings: UserSettings()))
+            .environmentObject(UserStatus())
+    }
+}
+
+struct RegistrationProfilePhotoView: View {
+    @EnvironmentObject var loginViewModel: LoginViewModel
+    @State var showCameraImagePicker = false
+    @State var showPhotoLibraryImagePicker = false
+    @State var cameraNotAllowedAlert = false
+
+    var body: some View {
+        VStack(alignment: .leading) {
             Text("Profile photo")
                 .font(.subheadline)
                 .padding(.top, 10)
@@ -41,7 +66,7 @@ struct RegistrationScreenView: View {
                     .frame(minWidth: UIScreen.main.bounds.size.width * 0.25, maxWidth: UIScreen.main.bounds.size.width * 0.3)
                     .aspectRatio(1, contentMode: .fit)
                     .overlay(Rectangle().stroke(Color(.placeholderText), lineWidth: 3).aspectRatio(1, contentMode: .fit))
-                    
+                
                 Spacer()
                 VStack {
                     Button(action: {
@@ -59,14 +84,14 @@ struct RegistrationScreenView: View {
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }
-                        .disabled(!UIImagePickerController.isSourceTypeAvailable(.camera))
-                        .opacity(UIImagePickerController.isSourceTypeAvailable(.camera) ? 1: 0.5)
-                        .fullScreenCover(isPresented: $showCameraImagePicker, content: {
-                            loginViewModel.photoFromCameraView
-                        })
-                        .alert(isPresented: $cameraNotAllowedAlert, content: {
-                            Alert(title: Text("Camera permission is disabled"), message: Text("Go to application settings and enable Camera permission"), primaryButton: .default(Text("Go to settings"), action: {UIApplication.goToAppSettings()}), secondaryButton: .default(Text("No thanks")))
-                        })
+                    .disabled(!UIImagePickerController.isSourceTypeAvailable(.camera))
+                    .opacity(UIImagePickerController.isSourceTypeAvailable(.camera) ? 1: 0.5)
+                    .fullScreenCover(isPresented: $showCameraImagePicker, content: {
+                        loginViewModel.photoFromCameraView
+                    })
+                    .alert(isPresented: $cameraNotAllowedAlert, content: {
+                        Alert(title: Text("Camera permission is disabled"), message: Text("Go to application settings and enable Camera permission"), primaryButton: .default(Text("Go to settings"), action: {UIApplication.goToAppSettings()}), secondaryButton: .default(Text("No thanks")))
+                    })
                     Button(action: {showPhotoLibraryImagePicker.toggle()}) {
                         Text("Choose Photo")
                             .padding(.all, 10)
@@ -75,62 +100,57 @@ struct RegistrationScreenView: View {
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }
-                        .disabled(!UIImagePickerController.isSourceTypeAvailable(.photoLibrary))
-                        .opacity(UIImagePickerController.isSourceTypeAvailable(.photoLibrary) ? 1: 0.5)
-                        .fullScreenCover(isPresented: $showPhotoLibraryImagePicker, content: {
-                            loginViewModel.photoFromLibraryView
-                        })
+                    .disabled(!UIImagePickerController.isSourceTypeAvailable(.photoLibrary))
+                    .opacity(UIImagePickerController.isSourceTypeAvailable(.photoLibrary) ? 1: 0.5)
+                    .fullScreenCover(isPresented: $showPhotoLibraryImagePicker, content: {
+                        loginViewModel.photoFromLibraryView
+                    })
                     
                 }.padding(.trailing, 15)
                 Spacer()
             }
-            HStack {
-                Spacer()
-                Button(action: {
-                    loginViewModel.registerUser()
-                    registerUser.toggle()
-                    //userStatus.isLoggedIn.toggle()
-                }) {
-                    Text("Register")
-                        .padding(.all, 10)
-                        .frame(width: UIScreen.main.bounds.size.width * 0.5)
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-
-                }
-                    .opacity(loginViewModel.allowRegister ? 1: 0.5)
-                    .disabled(!loginViewModel.allowRegister)
-                    
-                Spacer()
-                
-                Button(action: {
-                    registerUser.toggle()
-                    loginViewModel.resetRegistrationData()
-                    loginViewModel.message = ""
-                }) {
-                    Text("Cancel")
-                        .padding(.all, 10)
-                        .frame(width: UIScreen.main.bounds.size.width * 0.3)
-                        .background(Color.red)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
-                Spacer()
-            }.padding(.horizontal)
         }
-        .contentShape(Rectangle())
-        .onTapGesture {
-            self.hideKeyboard()
-        }
-
     }
 }
 
-struct RegistrationScreenView_Previews: PreviewProvider {
-    static var previews: some View {
-        RegistrationScreenView(registerUser: .constant(true))
-            .environmentObject(LoginViewModel(userSettings: UserSettings()))
-            .environmentObject(UserStatus())
+struct RegistrationButtonsView: View {
+    @EnvironmentObject var loginViewModel: LoginViewModel
+    @Binding var registerUser: Bool
+    
+    var body: some View {
+        HStack {
+            Spacer()
+            Button(action: {
+                loginViewModel.registerUser()
+                registerUser.toggle()
+                //userStatus.isLoggedIn.toggle()
+            }) {
+                Text("Register")
+                    .padding(.all, 10)
+                    .frame(width: UIScreen.main.bounds.size.width * 0.5)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                
+            }
+            .opacity(loginViewModel.allowRegister ? 1: 0.5)
+            .disabled(!loginViewModel.allowRegister)
+            
+            Spacer()
+            
+            Button(action: {
+                registerUser.toggle()
+                loginViewModel.resetRegistrationData()
+                loginViewModel.message = ""
+            }) {
+                Text("Cancel")
+                    .padding(.all, 10)
+                    .frame(width: UIScreen.main.bounds.size.width * 0.3)
+                    .background(Color.red)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+            }
+            Spacer()
+        }.padding(.horizontal)
     }
 }
