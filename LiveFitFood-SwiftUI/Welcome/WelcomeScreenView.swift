@@ -23,8 +23,8 @@ struct WelcomeScreenView: View {
                         .resizable()
                         .frame(width: UIScreen.main.bounds.height * 0.15, height: UIScreen.main.bounds.height * 0.15)
                         .scaledToFit()
-                        .cornerRadius(15)
-                        .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color(.label)).aspectRatio(1, contentMode: .fit))
+                        //.cornerRadius(15)
+                        .overlay(Rectangle().stroke(Color(.placeholderText), lineWidth: 3).aspectRatio(1, contentMode: .fit))
                     VStack(alignment: .leading) {
                         Text("Welcome!")
                             .font(.title)

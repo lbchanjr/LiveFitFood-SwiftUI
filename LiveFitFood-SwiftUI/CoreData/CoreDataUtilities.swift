@@ -153,7 +153,8 @@ class CoreDataUtilities {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
-        let dateToday = dateFormatter.string(from: Date())
+        let currentDateTime = Date()
+        let dateToday = dateFormatter.string(from: currentDateTime)
         
         let newCoupon = Coupon(context: viewContext)
         newCoupon.isUsed = false
@@ -163,7 +164,7 @@ class CoreDataUtilities {
         
         newCoupon.owner = user
         newCoupon.appliedTo = nil
-        newCoupon.code = Int64(dateToday.hashValue)
+        newCoupon.code = Int64(currentDateTime.hashValue)
         
         //print("Coupon code: \(String(format: "%010u", abs(newCoupon.code))), Discount: \(discount)%")
         do {
