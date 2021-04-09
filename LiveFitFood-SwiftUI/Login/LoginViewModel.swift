@@ -146,7 +146,7 @@ extension LoginViewModel: LoginViewModelDelegate {
                 return .invalidPassword
             }
         } else {
-            
+            image = UIImage(named: "noimage")!
             message = "New user registration"
             return .newUser
         }
