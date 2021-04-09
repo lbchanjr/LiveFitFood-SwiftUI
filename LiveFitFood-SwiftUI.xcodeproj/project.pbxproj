@@ -25,7 +25,6 @@
 		874429BE261413900029107F /* mealkits.json in Resources */ = {isa = PBXBuildFile; fileRef = 874429BD2614138F0029107F /* mealkits.json */; };
 		874429C12614248B0029107F /* LiveFitFoodData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874429C02614248A0029107F /* LiveFitFoodData.swift */; };
 		8770D7812602863500C60605 /* LiveFitFood_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7802602863500C60605 /* LiveFitFood_SwiftUIApp.swift */; };
-		8770D7832602863500C60605 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7822602863500C60605 /* ContentView.swift */; };
 		8770D7852602863900C60605 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8770D7842602863900C60605 /* Assets.xcassets */; };
 		8770D7882602863900C60605 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8770D7872602863900C60605 /* Preview Assets.xcassets */; };
 		8770D78A2602863900C60605 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770D7892602863900C60605 /* Persistence.swift */; };
@@ -62,7 +61,6 @@
 		874429C02614248A0029107F /* LiveFitFoodData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveFitFoodData.swift; sourceTree = "<group>"; };
 		8770D77D2602863500C60605 /* LiveFitFood-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LiveFitFood-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8770D7802602863500C60605 /* LiveFitFood_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveFitFood_SwiftUIApp.swift; sourceTree = "<group>"; };
-		8770D7822602863500C60605 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8770D7842602863900C60605 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8770D7872602863900C60605 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8770D7892602863900C60605 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -150,7 +148,6 @@
 			isa = PBXGroup;
 			children = (
 				8770D7802602863500C60605 /* LiveFitFood_SwiftUIApp.swift */,
-				8770D7822602863500C60605 /* ContentView.swift */,
 				8770D7892602863900C60605 /* Persistence.swift */,
 				8770D78E2602863900C60605 /* Info.plist */,
 				8770D78B2602863900C60605 /* LiveFitFood_SwiftUI.xcdatamodeld */,
@@ -308,7 +305,6 @@
 				8770D7A226051A0300C60605 /* LoginViewModel.swift in Sources */,
 				87DF4747261EDD4400825B4C /* OrderHistoryViewModel.swift in Sources */,
 				874429AB2610249E0029107F /* PasswordPromptView.swift in Sources */,
-				8770D7832602863500C60605 /* ContentView.swift in Sources */,
 				8770D7B02607940500C60605 /* HeaderView.swift in Sources */,
 				874429B82613B3B50029107F /* UserModel.swift in Sources */,
 				8770D78D2602863900C60605 /* LiveFitFood_SwiftUI.xcdatamodeld in Sources */,

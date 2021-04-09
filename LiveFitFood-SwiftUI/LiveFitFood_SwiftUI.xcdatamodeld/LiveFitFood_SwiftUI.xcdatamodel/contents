@@ -8,9 +8,6 @@
         <relationship name="appliedTo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="discount" inverseEntity="Order"/>
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="coupons" inverseEntity="User"/>
     </entity>
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-    </entity>
     <entity name="Meal" representedClassName="Meal" syncable="YES" codeGenerationType="class">
         <attribute name="calories" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -60,7 +57,6 @@
     </entity>
     <elements>
         <element name="Coupon" positionX="-18" positionY="81" width="128" height="119"/>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
         <element name="Meal" positionX="18" positionY="144" width="128" height="89"/>
         <element name="Mealkit" positionX="0" positionY="117" width="128" height="134"/>
         <element name="Order" positionX="-36" positionY="36" width="128" height="134"/>

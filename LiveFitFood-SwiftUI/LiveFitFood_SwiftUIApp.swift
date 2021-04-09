@@ -13,8 +13,6 @@ struct LiveFitFood_SwiftUIApp: App {
 
     var body: some Scene {
         WindowGroup {
-//            ContentView()
-
             let userSettings = UserSettings()
             let loginViewModel = LoginViewModel(userSettings: userSettings)
             
