@@ -9,15 +9,13 @@ import Foundation
 
 class OrderSummaryViewModel {
     
-    var email: String
-    
-    func isShakePhoneGameAllowed() -> Bool {
+    static func isShakePhoneGameAllowed(for email: String) -> Bool {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         let dateToday = dateFormatter.string(from: Date())
         
-        print("Date today is: \(dateToday)")
+        // print("Date today is: \(dateToday)")
         guard let user = CoreDataUtilities.fetchUsers(with: email).first else {
             // No user with this email found, don't allow game to start
             return false
@@ -34,9 +32,5 @@ class OrderSummaryViewModel {
             return false
         }
     }
-    
-    init(email: String) {
-        self.email = email
-    }
-    
+        
 }

@@ -8,16 +8,9 @@
 import SwiftUI
 
 struct OrderSummaryView: View {
-    static let dateFormat: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
-        return formatter
-    }()
-        
-    var orderSummaryViewModel: OrderSummaryViewModel
-    @StateObject var shakeCounter = ShakeCounter(count: 3)
+    @EnvironmentObject var loggedInUser: LoggedInUser
     
+    @StateObject var shakeCounter = ShakeCounter(count: 3)
     @ObservedObject var order: Order
     
     @State var showGameNotAllowedAlert = false
@@ -26,6 +19,15 @@ struct OrderSummaryView: View {
     @State var couponDiscount: Int?
     
     @Binding var isActive: Bool
+
+    static let dateFormat: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter
+    }()
+        
+
     var body: some View {
         VStack {
             Form {
@@ -62,7 +64,7 @@ struct OrderSummaryView: View {
                 
                 Section(header: Text("Win a coupon")) {
                     Button(action: {
-                        if orderSummaryViewModel.isShakePhoneGameAllowed() {
+                        if OrderSummaryViewModel.isShakePhoneGameAllowed(for: loggedInUser.email) {
                             // Allow user to play the game
                             gameIsActive.toggle()
                         } else {
@@ -73,7 +75,7 @@ struct OrderSummaryView: View {
                             .fontWeight(.medium)
                     }
                     .alert(isPresented: $showGameNotAllowedAlert, content: {
-                        Alert(title: Text("No coupons available"), message: Text("You already won coupons today.\n Try again tomorrow."), dismissButton: .default(Text("Ok")))
+                        Alert(title: Text("No coupons available"), message: Text("You already won coupon(s) today.\n Try again tomorrow."), dismissButton: .default(Text("Ok")))
                     })
                     .disabled(gameIsActive)
                     .opacity(gameIsActive ? 0.5: 1)
@@ -99,7 +101,7 @@ struct OrderSummaryView: View {
                             print("Shake detected! Left = \(shakeCounter.shakeCountdown)")
                                       
                             // result may contain a nil or the discount that was generated
-                            couponDiscount = shakeCounter.processShake(for: orderSummaryViewModel.email)
+                            couponDiscount = shakeCounter.processShake(for: loggedInUser.email)
                             
                             if couponDiscount != nil {
                                 showCouponDiscountMessage = true
@@ -126,7 +128,7 @@ struct OrderSummaryView: View {
 
                 Section(header: Text("Order History")) {
                     List {
-                        NavigationLink(destination: OrderHistoryView(orderHistoryViewModel: OrderHistoryViewModel(email: orderSummaryViewModel.email))) {
+                        NavigationLink(destination: OrderHistoryView(viewModel: OrderHistoryViewModel(email: loggedInUser.email))) {
                             Text("View previous orders")
                                 .fontWeight(.medium)
                         }
@@ -152,18 +154,19 @@ struct OrderSummaryView: View {
         
     }
     
-    init(viewModel: OrderSummaryViewModel, order: Order, isActive: Binding<Bool>) {
-        self.orderSummaryViewModel = viewModel
-        self.order = order
-        self._isActive = isActive
-
-        print("Initializing order summary view")
-
-    }
+//    init(order: Order, isActive: Binding<Bool>) {
+//        self.order = order
+//        self._isActive = isActive
+//
+//        print("Initializing order summary view")
+//
+//    }
 }
 
 struct OrderSummaryView_Previews: PreviewProvider {
     static var previews: some View {
-        OrderSummaryView(viewModel: OrderSummaryViewModel(email: "abcde@gmail.com") ,order: MockData().getOrder(), isActive: .constant(true))
+        OrderSummaryView(order: MockData().getOrder(), isActive: .constant(true))
+            .environmentObject(LoggedInUser(email: "abcde@gmail.com", phone: "1-234-5567", image: nil))
     }
+    
 }

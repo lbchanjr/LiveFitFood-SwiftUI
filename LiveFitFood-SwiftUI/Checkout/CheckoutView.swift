@@ -84,8 +84,6 @@ struct CheckoutView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .frame(width: UIScreen.main.bounds.width * 0.20)
                         .multilineTextAlignment(.trailing)
-                        //.keyboardType(.decimalPad)
-                        
                     }
                     
                 }
@@ -139,12 +137,12 @@ struct CheckoutView: View {
             }
             .navigationBarTitle("Order Review")
 
-            NavigationLink(destination: OrderSummaryView(viewModel: OrderSummaryViewModel(email: checkoutViewModel.email), order: checkoutViewModel.order, isActive: $isActive), tag: 1, selection: $selection) {
+            NavigationLink(destination: OrderSummaryView(order: checkoutViewModel.order, isActive: $isActive), tag: 1, selection: $selection) {
 
                 Button(action: {
-                    print("Proceed clicked!")
+                    //print("Proceed clicked!")
                     checkoutViewModel.processOrder()
-                    print("process order called")
+                    //print("process order called")
                     selection = 1
                 }) {
                     Text("Proceed")
@@ -175,11 +173,7 @@ struct CheckoutView: View {
 //                OrderSummaryView(shakeCounter: ShakeCounter(count: 3), order: self.orderProcessed!, isActive: $isActive)
 //            })
 
-        }
-        .onTapGesture {
-            self.hideKeyboard()
-        }
-        
+        }        
     }
 }
 

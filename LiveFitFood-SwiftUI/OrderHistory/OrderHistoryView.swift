@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct OrderHistoryView: View {
+    @ObservedObject var viewModel: OrderHistoryViewModel
+
     static let dateFormat: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .long
         formatter.timeStyle = .medium
         return formatter
     }()
-    @ObservedObject var orderHistoryViewModel: OrderHistoryViewModel
-    
+
     var body: some View {
         Form {
-            ForEach(orderHistoryViewModel.orders) { order in
+            ForEach(viewModel.orders) { order in
                 
                 Section(header: Text("\(order.datetime ?? Date(), formatter: OrderHistoryView.dateFormat)")) {
                     HStack(alignment: .top) {
@@ -47,12 +48,12 @@ struct OrderHistoryView: View {
             }
         }
         .padding(.bottom, 5)
-        .navigationBarTitle("Order History")
+        .navigationBarTitle("Order History (\(viewModel.orders.count > 999 ? "999+": String(viewModel.orders.count)))")
     }
 }
 
 struct OrderHistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        OrderHistoryView(orderHistoryViewModel: OrderHistoryViewModel(email: "abcde@gmail.com"))
+        OrderHistoryView(viewModel: OrderHistoryViewModel(email: "abcde@gmail.com"))
     }
 }

@@ -154,6 +154,7 @@
 				8770D7892602863900C60605 /* Persistence.swift */,
 				8770D78E2602863900C60605 /* Info.plist */,
 				8770D78B2602863900C60605 /* LiveFitFood_SwiftUI.xcdatamodeld */,
+				87DF4749261F981700825B4C /* OrderHistory */,
 				87A53D36261AAA6600A22925 /* OrderSummary */,
 				870F536B2616996F00AF9937 /* Checkout */,
 				874429B62613B38A0029107F /* Models */,
@@ -212,12 +213,19 @@
 			isa = PBXGroup;
 			children = (
 				87A53D37261AAA9700A22925 /* OrderSummaryView.swift */,
-				87A53D66261D3B5100A22925 /* OrderHistoryView.swift */,
 				87A53D69261D4EC600A22925 /* ShakeCounter.swift */,
 				87A53D75261EAD7400A22925 /* OrderSummaryViewModel.swift */,
-				87DF4746261EDD4400825B4C /* OrderHistoryViewModel.swift */,
 			);
 			path = OrderSummary;
+			sourceTree = "<group>";
+		};
+		87DF4749261F981700825B4C /* OrderHistory */ = {
+			isa = PBXGroup;
+			children = (
+				87A53D66261D3B5100A22925 /* OrderHistoryView.swift */,
+				87DF4746261EDD4400825B4C /* OrderHistoryViewModel.swift */,
+			);
+			path = OrderHistory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
