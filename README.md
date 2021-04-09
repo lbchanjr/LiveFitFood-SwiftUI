@@ -1,4 +1,4 @@
-# Live Fit Food Ordering App for iOS (UIKit framework / Storyboard layout version)
+# Live Fit Food Ordering App for iOS (SwiftUI/Combine framework version)
 
 ### Mock ordering app for the livefitfood.ca website.
 ### App UI is implemented using the SwiftUI and Combine frameworks. For the UIKit/Storyboard implementation of this app, go to this link: [Live Fit Food (UIKit/Storyboard)](https://github.com/lbchanjr/LiveFitFood-UIKit).
@@ -12,9 +12,13 @@
 
 * Persistent data storage using the Apple's Core Data framework 
 
-* Auto-Layout
+* SwiftUI framework
 
-* Navigation Controller and Segues
+* Combine framework
+
+* MVVM design pattern
+
+* Use of Navigation, Stepper, Picker and other SwiftUI views
 
 * Core Location 
 
@@ -22,15 +26,15 @@
 
 * Core Data entity relationships
 
-* Data passing between segues
+* Use of property wrappers such as StateObject, ObservedObject, EnvironmentObject, etc...
 
-* SwiftyJSON library for JSON parsing operations
+* JSON Decoder for JSON file to Core Data managed object conversion
 
 * Database migration from JSON file to sqlite
 
-* UIImagePickerController for camera and photo library pictures
+* Custom SwiftUI view based on UIImagePickerController using UIViewControllerRepresentable for camera and photo library pictures
 
-* UIAlertController for popup alerts
+* Alert and Full screen sheet views
 
 * Shake gesture detection
 
@@ -50,9 +54,6 @@
 
 * Optional coupon application for additional discount to meals that were purchased.
 
-* User location tracking to determine whether user is within business location vicinity.
-
 * Daily mini-game that allows the customer to win a coupon.
 
 
-#### Link to specification: <a href="./docs/MAD4005 - Project - Meal Delivery Apps.pdf" target="_blank">[App Specification]</a>
