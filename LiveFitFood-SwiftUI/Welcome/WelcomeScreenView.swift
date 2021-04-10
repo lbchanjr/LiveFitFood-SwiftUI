@@ -63,12 +63,13 @@ struct WelcomeScreenHeaderView: View {
                 .frame(width: UIScreen.main.bounds.height * 0.15, height: UIScreen.main.bounds.height * 0.15)
                 .scaledToFit()
                 .clipShape(RoundedRectangle(cornerRadius: 15))
-                .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color(.label), lineWidth: 2).aspectRatio(1, contentMode: .fit))
+                .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color(.placeholderText), lineWidth: 2).aspectRatio(1, contentMode: .fit))
             VStack(alignment: .leading) {
                 Text("Welcome!")
                     .font(.title)
                 Text(user.email)
                     .font(.title3)
+                    .fontWeight(.medium)
                     .lineLimit(1)
                     .minimumScaleFactor(0.7)
                 Button(action: {userStatus.isLoggedIn.toggle()}) {

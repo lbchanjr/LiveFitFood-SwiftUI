@@ -19,23 +19,7 @@ struct MealkitDetailsView: View {
             List {
                 ForEach(mealkit.meals?.allObjects as! [Meal]) { meal in
                     //Text((meal as Meal).name ?? "")
-                    HStack {
-                        Image((meal as Meal).photo ?? "noimage")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: UIScreen.main.bounds.width * 0.25, height: UIScreen.main.bounds.width * 0.25)
-                            .clipped()
-                        VStack(alignment: .leading) {
-                            Spacer()
-                            Text((meal as Meal).name ?? "")
-                                .bold()
-                                .font(.title3)
-                            Spacer()
-                            Text("\(String((meal as Meal).calories))kCal")
-                                .font(.title3)
-                            Spacer()
-                        }
-                    }
+                    MealDetailsView(meal: meal)
                 }
             }.padding(.bottom, 10)
             
@@ -61,5 +45,28 @@ struct MealkitDetailsView_Previews: PreviewProvider {
         MealkitDetailsView(isActive: .constant(true)/*mealkit: MockData().getMealkit()*/)
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             .environmentObject(MockData().getMealkit())
+    }
+}
+
+struct MealDetailsView: View {
+    var meal: Meal
+    var body: some View {
+        HStack {
+            Image((meal as Meal).photo ?? "noimage")
+                .resizable()
+                .scaledToFill()
+                .frame(width: UIScreen.main.bounds.width * 0.25, height: UIScreen.main.bounds.width * 0.25)
+                .clipShape(RoundedRectangle(cornerRadius: 15))
+            VStack(alignment: .leading) {
+                Spacer()
+                Text((meal as Meal).name ?? "")
+                    .bold()
+                    .font(.title3)
+                Spacer()
+                Text("\(String((meal as Meal).calories))kCal")
+                    .font(.title3)
+                Spacer()
+            }
+        }
     }
 }
