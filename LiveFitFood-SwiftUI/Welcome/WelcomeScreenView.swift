@@ -62,8 +62,8 @@ struct WelcomeScreenHeaderView: View {
                 .resizable()
                 .frame(width: UIScreen.main.bounds.height * 0.15, height: UIScreen.main.bounds.height * 0.15)
                 .scaledToFit()
-                //.cornerRadius(15)
-                .overlay(Rectangle().stroke(Color(.placeholderText), lineWidth: 3).aspectRatio(1, contentMode: .fit))
+                .clipShape(RoundedRectangle(cornerRadius: 15))
+                .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color(.label), lineWidth: 2).aspectRatio(1, contentMode: .fit))
             VStack(alignment: .leading) {
                 Text("Welcome!")
                     .font(.title)
@@ -96,7 +96,7 @@ struct WelcomeScreenMealkitView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: UIScreen.main.bounds.width * 0.3, height: UIScreen.main.bounds.width * 0.3)
-            //.frame(width: 100, height: 100)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
             VStack(alignment: .leading) {
                 Text(mealkit.name ?? "")
                     .font(.title2)
