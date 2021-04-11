@@ -109,15 +109,14 @@ struct CheckoutView: View {
                         }
                     }
                     
-                    //HStack {
                     Picker(selection: $couponValue, label: Text("Selected coupon")) {
-                            //Text("None").tag(CouponDiscount.none)
                         Text("None").tag(Int64(0))
                         ForEach(checkoutViewModel.coupons) {coupon in
                             Text("\(String(format: "%010u", abs(coupon.code))) (\(String(format: "%.0f", coupon.discount * 100))%)")
                                 //.tag(CouponDiscount(rawValue: coupon.discount))
                                 .tag(coupon.code)
                         }
+                        .navigationBarTitle("Choose a coupon")
                     }
                     .pickerStyle(DefaultPickerStyle())
                     .onChange(of: couponValue) {_ in
@@ -132,17 +131,14 @@ struct CheckoutView: View {
                             checkoutViewModel.appliedCoupon = nil
                         }
                     }
-                    //}
+                    .navigationBarTitle("Order Review")
                 }
             }
-            .navigationBarTitle("Order Review")
 
             NavigationLink(destination: OrderSummaryView(order: checkoutViewModel.order, isActive: $isActive), tag: 1, selection: $selection) {
 
                 Button(action: {
-                    //print("Proceed clicked!")
                     checkoutViewModel.processOrder()
-                    //print("process order called")
                     selection = 1
                 }) {
                     Text("Proceed")
@@ -155,24 +151,6 @@ struct CheckoutView: View {
                 .padding(.bottom, 5)
 
             }
-
-//            Button(action: {
-//                print("Proceed clicked!")
-//                orderProcessed = checkoutViewModel.processOrder()
-//                proceedPressed.toggle()
-//
-//            }) {
-//                Text("Proceed")
-//                    .frame(width: UIScreen.main.bounds.width * 0.65)
-//                    .padding(.vertical)
-//                    .background(Color.blue)
-//                    .foregroundColor(.white)
-//                    .cornerRadius(10)
-//            }
-//            .fullScreenCover(isPresented: $proceedPressed, content: {
-//                OrderSummaryView(shakeCounter: ShakeCounter(count: 3), order: self.orderProcessed!, isActive: $isActive)
-//            })
-
         }        
     }
 }
